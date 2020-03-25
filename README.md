@@ -1,2 +1,0 @@
-# aios-filterable-gallery
-

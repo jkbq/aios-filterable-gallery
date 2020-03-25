@@ -1,0 +1,44 @@
+.hide-this{display: none !important;}
+.child img{max-width: 100%;}
+.taxonomy-container{padding: 5px 0;}
+.taxonomy-container h4{margin-bottom: 0;}
+.taxonomy-container label{font-weight: 500;}
+.taxonomy-container img{max-width: 100%;}
+.taxonomy-image-preview{
+	display: block;
+	max-width: 250px;
+}
+.taxonomy-image-preview img{
+	max-width: 100%;
+}
+.taxonomy-container-info{}
+.taxonomy-one-line{
+	display: block;
+	padding: 3px 0;
+}
+.taxonomy-one-line label{
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+}
+.taxonomy-one-line input{
+	display: inline-block;
+	width: 300px;
+	vertical-align: middle;
+}
+.taxonomy-one-line input[type="checkbox"]{
+	width: auto;
+	margin: 0 10px 0 0 !important;
+}
+.taxonomy-field{
+	padding: 5px 0;
+}
+.taxonomy-field label{
+	display: block;
+}
+.taxonomy-field input,
+.taxonomy-field select,
+.taxonomy-field textarea{
+	display: block;
+	width: 100%;
+}
