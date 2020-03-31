@@ -5,11 +5,69 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 	class filterable_gallery {
 
 		public function __construct() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_libs' ) );
+
+            add_action( 'init', [$this, 'register_procedures'], 0 );
+
 			add_action( 'init', [$this, 'custom_post_type'] );
 			add_filter( 'aios_add_custom_metabox_after_content_gallery', [$this, 'adding_extra_field_after_content'] );
-
 			add_action( 'save_post_gallery', [$this, 'custom_metaboxes_saved'] );
 		}
+
+
+		function enqueue_libs( $hook ){
+
+			$screen = get_current_screen();
+			if( $screen->post_type == 'gallery' ){
+
+			    wp_enqueue_script( 'aios-filterable-gallery-details-page-template-default-script', AIOS_FILTERABLE_URL . 'assets/js/post-type.js' );
+
+			}
+
+		}
+
+
+
+        /**
+         *
+         * Register Taxoomy
+         */
+        public function register_procedures() {
+            
+            $labels = array(
+                'name'                       => _x( 'Procedure', 'Taxonomy General Name', 'specialization' ),
+                'singular_name'              => _x( 'Procedure', 'Taxonomy Singular Name', 'specialization' ),
+                'menu_name'                  => __( 'Procedures', 'specialization' ),
+                'all_items'                  => __( 'All Items', 'specialization' ),
+                'parent_item'                => __( 'Parent Item', 'specialization' ),
+                'parent_item_colon'          => __( 'Parent Item:', 'specialization' ),
+                'new_item_name'              => __( 'New Item Name', 'specialization' ),
+                'add_new_item'               => __( 'Add New Item', 'specialization' ),
+                'edit_item'                  => __( 'Edit Item', 'specialization' ),
+                'update_item'                => __( 'Update Item', 'specialization' ),
+                'separate_items_with_commas' => __( 'Separate items with commas', 'specialization' ),
+                'search_items'               => __( 'Search Items', 'specialization' ),
+                'add_or_remove_items'        => __( 'Add or remove items', 'specialization' ),
+                'choose_from_most_used'      => __( 'Choose from the most used items', 'specialization' ),
+                'not_found'                  => __( 'Not Found', 'specialization' ),
+            );
+            $rewrite = array(
+                'slug'                       => 'procedure',
+                'with_front'                 => true,
+                'hierarchical'               => true,
+            );
+            $args = array(
+                'labels'                     => $labels,
+                'hierarchical'               => true,
+                'public'                     => true,
+                'show_ui'                    => true,
+                'show_admin_column'          => true,
+                'show_in_nav_menus'          => true,
+                'show_tagcloud'              => true,
+                'rewrite'                    => $rewrite,
+            );
+            register_taxonomy( 'procedure', array( 'gallery' ), $args );
+        }
 
 
 		public function custom_post_type() {
