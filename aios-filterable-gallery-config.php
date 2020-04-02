@@ -13,6 +13,7 @@ class Config{
      */
     public static function options_tabs( $tabs = array() ) {
         $tabs = array(
+
             '' => array(
                 'url' 		=> 'main-page',
                 'title' 	=> 'Gallery Page',
@@ -46,6 +47,18 @@ class Config{
                     )
                 )
             ),
+            'settings' => array(
+                'url' 		=> 'settings',
+                'title' 	=> 'Settings',
+                'child' 	=> array(
+                    array(
+                        'url' 		=> 'settings',
+                        'title' 	=> 'Themes',
+                        'function'	=> 'settings/settings.php'
+                    )
+                )
+            ),
+
         );
         return array_filter( $tabs );
     }
