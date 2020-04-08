@@ -45,7 +45,7 @@ if ( !class_exists( 'aios_filterable_gallery_posts_columns' ) ) {
 		public function remove_yoast_seo_admin_filters() {
 			$admin_page_id = get_current_screen()->id;
 			$admin_page_contains = 'edit-aios-filterable-gallery';
-			
+
 			if ( $admin_page_id == $admin_page_contains ) {
 				global $wpseo_meta_columns;
 
@@ -107,7 +107,7 @@ if ( !class_exists( 'aios_filterable_gallery_posts_columns' ) ) {
 		public function custom_style() {
 			$admin_page_id = get_current_screen()->id;
 			$admin_page_contains = 'edit-aios-filterable-gallery';
-			
+
 			if ( $admin_page_id == $admin_page_contains ) {
 				echo '<style type="text/css">
 					.manage-column.column-image { 
@@ -317,5 +317,5 @@ if ( !class_exists( 'aios_filterable_gallery_posts_columns' ) ) {
 	}
 
 	$aios_filterable_gallery_posts_columns = new aios_filterable_gallery_posts_columns();
-	
+
 }

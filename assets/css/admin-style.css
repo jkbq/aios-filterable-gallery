@@ -1,0 +1,14 @@
+.filterable-shortcode-wrap .form-group {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.filterable-shortcode-wrap .form-group select {
+    width: 100%;
+}
+
+.filterable-shortcode-wrap .form-group input {
+    width: 100%;
+}
+
+a.gal-generate-btn.button {margin-top: 10px;}
