@@ -13,8 +13,6 @@
 
 			generate_shortcode();
 
-
-
 		}
 
 		function copyToClipboard(selector){
@@ -54,7 +52,7 @@
 						  '</div>',
 						showCloseButton: true,
 						showCancelButton: false,
-						confirmButtonText: 'Copy!',
+						confirmButtonText: 'Copy Shortcode!',
 						focusConfirm: false,
 						cancelButtonAriaLabel: 'Thumbs down',
 						onBeforeOpen: () => {
