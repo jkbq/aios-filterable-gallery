@@ -30,14 +30,11 @@
         .aios-gallery-content-filter .aios-gallery-checkbox-filter{
             position: relative;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             padding: 12px 0;
             margin: 40px 0;
         }
         .aios-gallery-checkbox-filter .aios-sort-by{
-            position: absolute;
-            right: 0;
-            top: 0;
             width: 100%;
             max-width: 192px;
         }
@@ -53,6 +50,41 @@
                     text-transform: uppercase;
                     padding: 0 10px;
             }
+
+            .search-by-cases{
+                width: 100%;
+                position: relative;
+                max-width: 250px;
+            }
+                 .search-by-cases input{
+                    width: 100%;
+                    height: 39px;
+                    background: #fff;
+                    border: none;
+                    color: #333333;
+                    font-size: 14px;
+                    box-shadow: 0px 0px 10px 0px rgba(0, 1, 1, 0.19);
+                    display: block;
+                    text-transform: uppercase;
+                    padding: 0 16% 0 10px;
+                 }
+
+                 .search-by-cases i {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    font-size: 21px;
+                    display: block;
+                    height: 100%;
+                    width: 13%;
+                     cursor: pointer;
+                }
+
+                .search-by-cases i:before {
+                    position: absolute;
+                    top: 47%;
+                    transform: translate(0, -50%);
+                }
 
 /** Gallery Lists **/
 .aios-gallery-lists{
