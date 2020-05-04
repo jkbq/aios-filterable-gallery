@@ -6,7 +6,7 @@ class Options {
 
     /**
      * Prevent undefined varible when saving empty data
-
+     *
      * @since 1.0.0
      *
      * @access public

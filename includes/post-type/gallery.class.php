@@ -5,12 +5,48 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 	class filterable_gallery {
 
 		public function __construct() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_libs' ) );
-  add_action( 'init', [$this, 'register_procedures'], 0 );
-			add_action( 'init', [$this, 'custom_post_type'] );
-			add_filter( 'aios_add_custom_metabox_after_content_gallery', [$this, 'adding_extra_field_after_content'] );
-			add_action( 'save_post_gallery', [$this, 'custom_metaboxes_saved'] );
+
+		    add_filter( 'custom_menu_order', array( $this, 'submenu_order' ) );
+
+            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_libs' ) );
+            add_action( 'init', [$this, 'register_procedures'], 0 );
+            add_action( 'init', [$this, 'custom_post_type'] );
+            add_filter( 'aios_add_custom_metabox_after_content_gallery', [$this, 'adding_extra_field_after_content'] );
+            add_action( 'save_post_gallery', [$this, 'custom_metaboxes_saved'] );
+
+
+
 		}
+
+
+        function submenu_order( $menu_order ) {
+           global $submenu;
+
+//             echo '<pre>'.print_r($submenu,true).'</pre>';
+
+            // Build array of newly sorted items
+            $arr = array();
+//            $arr[] = $submenu['edit.php?post_type=cases'][5]; // Procedures
+//            $arr[] = $submenu['edit.php?post_type=cases'][17]; // Custom Fields
+//            $arr[] = $submenu['edit.php?post_type=cases'][15]; // Operations
+//            $arr[] = $submenu['edit.php?post_type=cases'][10]; // Add New Procedues
+//            $arr[] = $submenu['edit.php?post_type=cases'][16]; // Doctor
+//
+//
+//            // Remove the originals
+//            unset($submenu['edit.php?post_type=cases'][5]);
+//            unset($submenu['edit.php?post_type=cases'][17]);
+//            unset($submenu['edit.php?post_type=cases'][15]);
+//            unset($submenu['edit.php?post_type=cases'][10]);
+//            unset($submenu['edit.php?post_type=cases'][16]);
+
+
+            // Add newly items to the list
+            $submenu['edit.php?post_type=cases'] += $arr;
+
+            return $menu_ord;
+        }
+
 
 
 		function enqueue_libs( $hook ){
@@ -32,24 +68,24 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
         public function register_procedures() {
 
             $labels = array(
-                'name'                       => _x( 'Procedure', 'Taxonomy General Name', 'specialization' ),
-                'singular_name'              => _x( 'Procedure', 'Taxonomy Singular Name', 'specialization' ),
+                'name'                       => _x( 'Procedures', 'Taxonomy General Name', 'specialization' ),
+                'singular_name'              => _x( 'Procedures', 'Taxonomy Singular Name', 'specialization' ),
                 'menu_name'                  => __( 'Procedures', 'specialization' ),
-                'all_items'                  => __( 'All Items', 'specialization' ),
-                'parent_item'                => __( 'Parent Item', 'specialization' ),
-                'parent_item_colon'          => __( 'Parent Item:', 'specialization' ),
-                'new_item_name'              => __( 'New Item Name', 'specialization' ),
-                'add_new_item'               => __( 'Add New Item', 'specialization' ),
-                'edit_item'                  => __( 'Edit Item', 'specialization' ),
-                'update_item'                => __( 'Update Item', 'specialization' ),
+                'all_items'                  => __( 'All Procedures', 'specialization' ),
+                'parent_item'                => __( 'Parent Procedure', 'specialization' ),
+                'parent_item_colon'          => __( 'Parent Procedure:', 'specialization' ),
+                'new_item_name'              => __( 'New Procedure Name', 'specialization' ),
+                'add_new_item'               => __( 'Add New Procedure', 'specialization' ),
+                'edit_item'                  => __( 'Edit Procedure', 'specialization' ),
+                'update_item'                => __( 'Update Procedure', 'specialization' ),
                 'separate_items_with_commas' => __( 'Separate items with commas', 'specialization' ),
-                'search_items'               => __( 'Search Items', 'specialization' ),
+                'search_items'               => __( 'Search Procedures', 'specialization' ),
                 'add_or_remove_items'        => __( 'Add or remove items', 'specialization' ),
                 'choose_from_most_used'      => __( 'Choose from the most used items', 'specialization' ),
                 'not_found'                  => __( 'Not Found', 'specialization' ),
             );
             $rewrite = array(
-                'slug'                       => 'procedure',
+                'slug'                       => 'operations',
                 'with_front'                 => true,
                 'hierarchical'               => true,
             );
@@ -63,20 +99,20 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
                 'show_tagcloud'              => true,
                 'rewrite'                    => $rewrite,
             );
-            register_taxonomy( 'procedure', array( 'gallery' ), $args );
+            register_taxonomy( 'procedure', array( 'cases' ), $args );
         }
 
 
 		public function custom_post_type() {
 			$labels = array(
-				'name' 					=> 'Gallery',
-				'singular_name' 		=> 'Gallery',
-				'add_new' 				=> 'Add New Case',
-				'add_new_item' 			=> 'Add New Case',
-				'edit_item' 			=> 'Edit Case',
-				'new_item' 				=> 'New Case',
-				'view_item' 			=> 'View Case',
-				'search_items' 			=> 'Search for a Case',
+				'name' 					=> 'Cases',
+				'singular_name' 		=> 'cases',
+				'add_new' 				=> 'Add New Cases',
+				'add_new_item' 			=> 'Add New Cases',
+				'edit_item' 			=> 'Edit Cases',
+				'new_item' 				=> 'New Cases',
+				'view_item' 			=> 'View Cases',
+				'search_items' 			=> 'Search for a Cases',
 				'not_found' 			=> 'Nothing Found',
 				'not_found_in_trash' 	=> 'Nothing found in the Trash',
 				'parent_item_colon' 	=> ''
@@ -104,7 +140,7 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 				'has_archive' 			=> true /** editable content - archive-{cpt-name}.php **/
 			);
 
-			register_post_type( 'gallery', $args );
+			register_post_type( 'cases', $args );
 		}
 
 		/**

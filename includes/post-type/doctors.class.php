@@ -9,6 +9,9 @@ if ( ! class_exists( 'doctors' ) ) {
 			add_filter( 'aios_add_custom_metabox_after_content_doctor', [$this, 'adding_extra_field_after_content'] );
 
 			add_action( 'save_post_doctor', [$this, 'custom_metaboxes_saved'] );
+
+            add_action('admin_menu', array( $this, 'my_admin_menu' ), 11);
+
 		}
 
 
@@ -46,7 +49,7 @@ if ( ! class_exists( 'doctors' ) ) {
 				'capability_type' 		=> 'post',
 				'hierarchical' 			=> false,
 				'menu_position' 		=> 21,
-				'has_archive' 			=> true /** editable content - archive-{cpt-name}.php **/
+				'has_archive' 			=> true /** editable content - archive-{cpt-name}.php **/,
 			);
 
 			register_post_type( 'doctor', $args );
@@ -61,6 +64,10 @@ if ( ! class_exists( 'doctors' ) ) {
 
 		}
 
+
+		function my_admin_menu() {
+            add_submenu_page('edit.php?post_type=cases', 'Custom Fields', 'Custom Fields', 'manage_options', 'edit.php?post_type=acf-field-group');
+        }
 
 		/**
 		 *
