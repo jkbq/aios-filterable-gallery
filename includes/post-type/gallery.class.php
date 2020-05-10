@@ -13,11 +13,12 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
             add_action( 'init', [$this, 'custom_post_type'] );
             add_filter( 'aios_add_custom_metabox_after_content_gallery', [$this, 'adding_extra_field_after_content'] );
             add_action( 'save_post_gallery', [$this, 'custom_metaboxes_saved'] );
-
-
+            add_action( 'add_meta_boxes', [$this, 'wpdocs_register_meta_boxes'] );
 
 		}
-
+        function wpdocs_register_meta_boxes() {
+            remove_meta_box('procedurediv', 'publicite', 'side');
+        }
 
         function submenu_order( $menu_order ) {
            global $submenu;
@@ -26,19 +27,16 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 
             // Build array of newly sorted items
             $arr = array();
-//            $arr[] = $submenu['edit.php?post_type=cases'][5]; // Procedures
-//            $arr[] = $submenu['edit.php?post_type=cases'][17]; // Custom Fields
-//            $arr[] = $submenu['edit.php?post_type=cases'][15]; // Operations
-//            $arr[] = $submenu['edit.php?post_type=cases'][10]; // Add New Procedues
-//            $arr[] = $submenu['edit.php?post_type=cases'][16]; // Doctor
-//
-//
+            $arr[] = $submenu['edit.php?post_type=cases'][5]; // Cases
+            $arr[] = $submenu['edit.php?post_type=cases'][10]; // Add New Cases
+            $arr[] = $submenu['edit.php?post_type=cases'][15]; // Procedures
+            $arr[] = $submenu['edit.php?post_type=cases'][16]; // Custom Fields
+
 //            // Remove the originals
-//            unset($submenu['edit.php?post_type=cases'][5]);
-//            unset($submenu['edit.php?post_type=cases'][17]);
-//            unset($submenu['edit.php?post_type=cases'][15]);
-//            unset($submenu['edit.php?post_type=cases'][10]);
-//            unset($submenu['edit.php?post_type=cases'][16]);
+            unset($submenu['edit.php?post_type=cases'][5]);
+            unset($submenu['edit.php?post_type=cases'][10]);
+            unset($submenu['edit.php?post_type=cases'][15]);
+            unset($submenu['edit.php?post_type=cases'][16]);
 
 
             // Add newly items to the list
@@ -52,7 +50,7 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 		function enqueue_libs( $hook ){
 
 			$screen = get_current_screen();
-			if( $screen->post_type == 'gallery' ){
+			if( $screen->post_type == 'cases' ){
 
 			    wp_enqueue_script( 'aios-filterable-gallery-details-page-template-default-script', AIOS_FILTERABLE_URL . 'assets/js/post-type.js' );
 
@@ -85,7 +83,7 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
                 'not_found'                  => __( 'Not Found', 'specialization' ),
             );
             $rewrite = array(
-                'slug'                       => 'operations',
+                'slug'                       => 'procedure',
                 'with_front'                 => true,
                 'hierarchical'               => true,
             );
@@ -100,15 +98,17 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
                 'rewrite'                    => $rewrite,
             );
             register_taxonomy( 'procedure', array( 'cases' ), $args );
+
+
         }
 
 
 		public function custom_post_type() {
 			$labels = array(
-				'name' 					=> 'Cases',
-				'singular_name' 		=> 'cases',
-				'add_new' 				=> 'Add New Cases',
-				'add_new_item' 			=> 'Add New Cases',
+				'name' 					=> 'All Cases',
+				'singular_name' 		=> 'Cases',
+				'add_new' 				=> 'Add New Case',
+				'add_new_item' 			=> 'Add New Case',
 				'edit_item' 			=> 'Edit Cases',
 				'new_item' 				=> 'New Cases',
 				'view_item' 			=> 'View Cases',
@@ -131,7 +131,7 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 				'query_var' 			=> true,
 				'menu_icon' 			=> 'dashicons-format-gallery',
 				'rewrite' 				=> array(
-					'slug' 				=> 'gallery',
+					'slug' 				=> 'cases',
 					'with_front' 		=> false
 				),
 				'capability_type' 		=> 'post',

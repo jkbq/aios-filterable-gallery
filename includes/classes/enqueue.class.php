@@ -38,7 +38,6 @@ if ( !class_exists( 'aios_filterable_gallery_enqueue' ) ) {
 		public function admin_ui() {
 
 			wp_enqueue_style( 'aios-filterable-style', AIOS_FILTERABLE_URL_ASSETS_CSS .'admin-style.css' );
-			wp_enqueue_script( 'aios-filterable-clipboard', AIOS_FILTERABLE_URL_ASSETS_JS .'clipboard.min.js' );
 			wp_enqueue_script( 'aios-filterable-script', AIOS_FILTERABLE_URL_ASSETS_JS .'admin-scripts.js' );
 
 		}

@@ -85,7 +85,7 @@
 			});
 
 
-			$procedure_types = $('input[name="procedure_types"]');
+			$procedure_types = $('input[name="procedure"]');
 
 			if ($procedure_types.val() == 'Breast Augmentation'){
 
@@ -102,7 +102,7 @@
 
 
 
-					jQuery('input[name="procedure_types"]').val(jQuery(this).val());
+					jQuery('input[name="procedure"]').val(jQuery(this).val());
 					jQuery('.aios-gallery-submit-bttn input').trigger('click');
 
 			});

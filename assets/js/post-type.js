@@ -59,11 +59,11 @@
             $title = $('#title');
             $label = $('#title-prompt-text');
             $case_number = $('[data-name="case_number"] input');
-            $procedure = $('[data-name="procedure_types"] select');
+            $procedure = $('[name="tax_input[procedure][]"]');
 
             $procedure.on('change', function () {
 
-                $procedureVal = $(this).val();
+                $procedureVal = $(this).parent().text();
 
                 $title.val($procedureVal + ':' + $case_number.val());
 
@@ -78,13 +78,9 @@
 
                 $case_numberVal = $(this).val();
 
-                $title.val('' + $procedure.val() + ':' + $case_numberVal + '');
+                $title.val(''+ $('[name="tax_input[procedure][]"]:checked').parent().text() +':'+ $case_numberVal+' ');
 
-                if ($title.val() != '') {
-                    $label.addClass('screen-reader-text');
-                } else {
-                    $label.removeClass('screen-reader-text');
-                }
+
             });
 
         }
