@@ -1,152 +1,138 @@
 ( function($) {
 	$( document ).ready( function() {
 
-		var $document 		= $( document ),
-			$window 		= $( window ),
-			$viewport 		= $( 'html, body' ),
-			$html 			= $( 'html' ),
-			$body 			= $( 'body' );
-		/**
-		 * Construct.
-		 */
-		function __construct() {
-			pagination();
-			custom_select();
-			initComparisons();
-		}
-		function  pagination() {
+		const	$document 		= $( document );
+		const	$window 		= $( window );
+		const	$viewport 		= $( 'html, body' );
+		const	$html 			= $( 'html' );
+		const	$body 			= $( 'body' );
 
-			$paginate = $('.aios-gallery-pagination a');
 
-			$paginate.on('click', function (e) {
-				e.preventDefault();
-				$('#paginate-value').val($(this).data('page'));
-				$('.aios-gallery-submit-bttn input').trigger('click');
-			});
+		// CONSTRUCT
+
+		function __construct(){
+
+			aios_ion_slider();
+			aios_gallery_custom_dropdown();
+			aios_render_cases();
+			aios_search_func();
+			aios_sort();
+			taxonomy_quick_search();
+			aios_pagination();
 
 		}
-
-		function custom_select() {
-
-
-			 $('form').submit(function () {
-				var $empty_fields = $(this).find(':input').filter(function () {
-					return $(this).val() === '';
-				});
-				$empty_fields.prop('disabled', true);
-				return true;
-			});
-
+		function  aios_ion_slider() {
 			$(".js-range-slider").ionRangeSlider({
 				 skin: "round",
 				  onChange: function (data) {
-				 	$('#age').val(''+data['from']+','+data['to']+'');
+					$('#age').val(''+data['from']+','+data['to']+'');
 				}
 			});
+		}
+		function aios_gallery_custom_dropdown() {
 
+			let parent		= $(".aios-gallery-dropdown-filter");
 
-			$parent		= $(".aios-gallery-dropdown-filter");
-
-			$parent.each(function(){
-				var $input = $(this).find("input");
-				var $dropDown = $(this).find("ul");
+			parent.each(function(){
+				const input = $(this).find("input");
+				const dropDown = $(this).find("ul");
 
 				$(this).on("click", function(){
-				  $dropDown.stop().slideToggle();
-				  $(this).toggleClass( 'active');
+					dropDown.stop().slideToggle();
+					$(this).toggleClass( 'active');
 				});
 
-				$dropDown.on("click", "li", function(){
-				  $input.val( $(this).text() );
+				dropDown.on("click", "li", function(){
+					input.val( $(this).text() );
 				});
+			});
 
-			  });
-
-			// more options
-			$more = $('.aios-more-option');
-
-			$more.on('click', function () {
-				$('.aios-gallery-form-more-wrap').slideToggle();
-
-				$procedure_types = $('input[name="procedure_types"]');
-
-
-				if ($procedure_types.val() == 'Breast Augmentation'){
-
-					// procedure types
-					$('.breast-augmentation').css({
-						'display': 'flex',
+		}
+		
+		function aios_render_cases() {
+				$.post( ajaxurl, {
+					'action' 	: 'aios_medical_post_filter',
+					'data'		: jQuery('.aios-gallery-form form').serialize(),
+				}, function(response) {
+					$('.aios-gallery-lists .row').append(response);
+					$('#loader').fadeOut();
+					$('.aios-gallery-lists .row').animate({
+						opacity: 1,
 					});
-				}else{
-					$('.breast-augmentation').hide();
-				}
+					initComparisons();
+				} ).done( function() {
 
+				} );
 
+		}
+		
+		function aios_search_func() {
+			let button = $('.aios-gallery-submit-bttn input');
+			
+			button.on('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				$('#loader').fadeIn();
+				$('.aios-gallery-lists .row').empty();
+				aios_render_cases();
 			});
 
-
-			$procedure_types = $('input[name="procedure"]');
-
-			if ($procedure_types.val() == 'Breast Augmentation'){
-
-				// procedure types
-				$('.breast-augmentation').css({
-					'display': 'flex',
-				});
-			}else{
-				$('.breast-augmentation').hide();
-			}
-
-			// checkbox
-			jQuery('.aios-producedure-filter .styled-checkbox').on('click', function(){
-
-
-
-					jQuery('input[name="procedure"]').val(jQuery(this).val());
-					jQuery('.aios-gallery-submit-bttn input').trigger('click');
-
-			});
-
-			//sort
-
-			jQuery('.aios-sort-by select').on('change', function () {
-
-				jQuery('#sort').val(jQuery(this).val());
-				jQuery('.aios-gallery-submit-bttn input').trigger('click');
-			});
-
-			// case number
-
-			$('.search-by-cases input').on('keypress', function () {
-				var $case_number = $('#case-number');
-				$case_number.val($(this).val());
-				console.log($case_number.val());
-
-			});
-			$('.search-by-cases input').on('change', function () {
-				var $case_number = $('#case-number');
-				$case_number.val($(this).val());
-				console.log($case_number.val());
-
-			});
-
-
-			$('.search-by-cases i').on('click', function () {
-				jQuery('.aios-gallery-submit-bttn input').trigger('click');
-			});
-
-			$('.search-by-cases input').on('keypress',function(e) {
-			    if(e.which == 13) {
-			        jQuery('.aios-gallery-submit-bttn input').trigger('click');
-			    }
-			});
 
 
 		}
+		
+		function aios_sort() {
 
-		/**
-		 * Instantiate
-		 */
+			sort = $('.aios-sort-by select');
+
+			sort.on('change', function () {
+
+					$('#loader').fadeIn();
+					$('.aios-gallery-lists .row').empty();
+					$('input[name="sorts"]').val($(this).val());
+					aios_render_cases();
+			})
+		}
+		
+		function taxonomy_quick_search() {
+
+			taxonomy 	= $('.aios-toxonomy-quick-search input');
+			procedure	= $('input[name="procedure"]');
+
+			 taxonomy.click(function () {
+				$("[name="+$(this).prop('name')+"]").prop("checked", false);
+				$(this).prop("checked", true);
+				$('#loader').fadeIn();
+				$('.aios-gallery-lists .row').empty();
+
+				if ($(this).is(':checked')) {
+					procedure.val($(this).val());
+
+				}else{
+						procedure.val('');
+				}
+				aios_render_cases();
+			});
+
+		}
+		
+		function aios_pagination() {
+
+			let li = $('.aios-gallery-pagination a');
+
+			$('.aios-gallery-pagination li:first a').addClass('active');
+			li.on('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				li.removeClass('active');
+				$('input[name="page"]').val($(this).data('page'));
+
+				$('.aios-gallery-submit-bttn input').trigger('click');
+				$(this).addClass('active');
+			});
+		}
+
 		__construct();
 
 	} );

@@ -3,9 +3,9 @@
 
         function __construct() {
             deslect_radio();
-            auto_title();
-            auto_generateCase();
-            permalink_changer();
+            //auto_title();
+            // auto_generateCase();
+            // permalink_changer();
         }
 
 

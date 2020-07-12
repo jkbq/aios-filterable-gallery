@@ -10,10 +10,13 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_libs' ) );
             add_action( 'init', [$this, 'register_procedures'], 0 );
+            add_action( 'init', [$this, 'register_case_number'], 0 );
             add_action( 'init', [$this, 'custom_post_type'] );
             add_filter( 'aios_add_custom_metabox_after_content_gallery', [$this, 'adding_extra_field_after_content'] );
             add_action( 'save_post_gallery', [$this, 'custom_metaboxes_saved'] );
             add_action( 'add_meta_boxes', [$this, 'wpdocs_register_meta_boxes'] );
+
+
 
 		}
         function wpdocs_register_meta_boxes() {
@@ -27,16 +30,18 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 
             // Build array of newly sorted items
             $arr = array();
-            $arr[] = $submenu['edit.php?post_type=cases'][5]; // Cases
+            $arr[] = $submenu['edit.php?post_type=cases'][5]; // Summary
+            $arr[] = $submenu['edit.php?post_type=cases'][16]; // Case Number
             $arr[] = $submenu['edit.php?post_type=cases'][10]; // Add New Cases
             $arr[] = $submenu['edit.php?post_type=cases'][15]; // Procedures
-            $arr[] = $submenu['edit.php?post_type=cases'][16]; // Custom Fields
+            $arr[] = $submenu['edit.php?post_type=cases'][17]; // Custom Fields
 
 //            // Remove the originals
             unset($submenu['edit.php?post_type=cases'][5]);
             unset($submenu['edit.php?post_type=cases'][10]);
             unset($submenu['edit.php?post_type=cases'][15]);
             unset($submenu['edit.php?post_type=cases'][16]);
+            unset($submenu['edit.php?post_type=cases'][17]);
 
 
             // Add newly items to the list
@@ -59,9 +64,9 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 		}
 
 
-		  /**
+       /**
          *
-         * Register Taxoomy
+         * Register Procedure Taxoomy
          */
         public function register_procedures() {
 
@@ -101,18 +106,60 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 
 
         }
+         /**
+         *
+         * Register Case Number Taxoomy
+         */
+        public function register_case_number() {
 
+            $labels = array(
+                'name'                       => _x( 'Case Number', 'Taxonomy General Name', 'specialization' ),
+                'singular_name'              => _x( 'Case Number', 'Taxonomy Singular Name', 'specialization' ),
+                'menu_name'                  => __( 'Case Number', 'specialization' ),
+                'all_items'                  => __( 'All Case Number', 'specialization' ),
+                'parent_item'                => __( 'Parent Case Number', 'specialization' ),
+                'parent_item_colon'          => __( 'Parent Case Number:', 'specialization' ),
+                'new_item_name'              => __( 'New Case Number Name', 'specialization' ),
+                'add_new_item'               => __( 'Add New Case Number', 'specialization' ),
+                'edit_item'                  => __( 'Edit Case Number', 'specialization' ),
+                'update_item'                => __( 'Update Case Number', 'specialization' ),
+                'separate_items_with_commas' => __( 'Separate items with commas', 'specialization' ),
+                'search_items'               => __( 'Search Procedures', 'specialization' ),
+                'add_or_remove_items'        => __( 'Add or remove items', 'specialization' ),
+                'choose_from_most_used'      => __( 'Choose from the most used items', 'specialization' ),
+                'not_found'                  => __( 'Not Found', 'specialization' ),
+            );
+            $rewrite = array(
+                'slug'                       => 'cases',
+                'with_front'                 => true,
+                'hierarchical'               => true,
+            );
+            $args = array(
+                'labels'                     => $labels,
+                'hierarchical'               => true,
+                'public'                     => true,
+                'show_ui'                    => true,
+                'show_admin_column'          => true,
+                'show_in_nav_menus'          => true,
+                'show_tagcloud'              => true,
+                'rewrite'                    => $rewrite,
+            );
+            register_taxonomy( 'casenumber', array( 'cases' ), $args );
+
+
+        }
 
 		public function custom_post_type() {
 			$labels = array(
-				'name' 					=> 'All Cases',
+				'name' 					=> 'Cases',
 				'singular_name' 		=> 'Cases',
+				'all_items'             => __( 'Summary', 'textdomain' ),
 				'add_new' 				=> 'Add New Case',
 				'add_new_item' 			=> 'Add New Case',
 				'edit_item' 			=> 'Edit Cases',
 				'new_item' 				=> 'New Cases',
 				'view_item' 			=> 'View Cases',
-				'search_items' 			=> 'Search for a Cases',
+				'search_items' 			=> 'Search Cases',
 				'not_found' 			=> 'Nothing Found',
 				'not_found_in_trash' 	=> 'Nothing found in the Trash',
 				'parent_item_colon' 	=> ''
@@ -131,13 +178,14 @@ if ( ! class_exists( 'filterable_gallery' ) ) {
 				'query_var' 			=> true,
 				'menu_icon' 			=> 'dashicons-format-gallery',
 				'rewrite' 				=> array(
-					'slug' 				=> 'cases',
-					'with_front' 		=> false
+					'slug' 				=> 'cases/%casenumber%',
+					'with_front' => true,
+                    'hierarchical' => true
 				),
 				'capability_type' 		=> 'post',
 				'hierarchical' 			=> false,
 				'menu_position' 		=> 21,
-				'has_archive' 			=> true /** editable content - archive-{cpt-name}.php **/
+				'has_archive' 			=> 'cases' /** editable content - archive-{cpt-name}.php **/
 			);
 
 			register_post_type( 'cases', $args );
