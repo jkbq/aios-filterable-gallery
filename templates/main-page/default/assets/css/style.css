@@ -1,0 +1,510 @@
+/** Global **/
+
+#inner-page-wrapper{
+    margin-top: 0 !important;
+    overflow: visible !important;
+    z-index: 20 !important;
+}
+/** Globl **/
+#aios-gallery-banner{
+    width: 100%;
+    position: relative;
+}
+    #aios-gallery-banner .aios-gallery-banner-wrap{
+        width: 100%;
+        position: relative;
+    }
+        #aios-gallery-banner .aios-gallery-banner-wrap canvas{
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #f9f7f7 url(../../../../../frontend/images/ip-banner.jpg) no-repeat;
+            background-size: cover;
+        }
+        #aios-gallery-banner .aios-gallery-banner-wrap:after {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            content: "";
+            opacity: 0.2;
+        }
+    #aios-gallery-banner .aios-gallery-title{
+        position: absolute;
+        bottom: 12%;
+        width: 100%;
+        height: auto;
+        z-index: 5;
+    }
+        #aios-gallery-banner .aios-gallery-title h1{
+            font-weight: 300;
+            font-size: 40px;
+            line-height: 1;
+            text-transform: uppercase;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+            #aios-gallery-banner .aios-gallery-title h1:after {
+                display: block;
+                content: '';
+                width: 60%;
+                position: absolute;
+                right: 0;
+                height: 1px;
+                background: #fff;
+                top: 10%;
+            }
+            #aios-gallery-banner .aios-gallery-title h1 span{
+                font-size: 110px;
+                line-height: 1;
+            }
+
+    .aios-gallery-dropdown-filter ul{
+        display: none;
+    }
+
+/** Search Filter **/
+.aios-gallery-search-filters{
+    position: relative;
+}
+    .aios-gallery-search-filters .aios-gallery-form{
+        position: relative;
+    }
+        .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap{
+            display: flex;
+            background: #fff;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgb(243, 243, 243);
+            background-color: rgb(255, 255, 255);
+        }
+
+        .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap label,
+        .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap span{
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+        }
+
+            .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div{
+                border-left: 1px solid #d9d9d9;
+                padding: 23px 30px;
+                position: relative;
+            }
+            .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:first-child{
+                width: 18%;
+                border-left: none;
+            }
+            .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(2){
+                width: 32%;
+            }
+            .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(3),
+            .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(4){
+                width: 20%;
+            }
+
+             .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-submit-bttn{
+                 width: 10.71%;
+             }
+             .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-more-option{
+                 width: 9.92%;
+             }
+
+
+                .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-dropdown-procedure {}
+
+
+                .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-dropdown-procedure span {
+                    font-size: 16px;
+                    text-align: left;
+                    padding: 20px 0;
+                    position: relative;
+                    cursor: pointer;
+                }
+                    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-dropdown-procedure span:after{
+                    display: block;
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 7px 5px 10px 5px;
+                    border-color: #144262 transparent transparent transparent;
+                    position: absolute;
+                    right: 0;
+                    top: 53%;
+                    transform: translate(-50%, -50%);
+                    }
+
+             /** Checkbox  **/
+             .aios-gallery-checkbox-filter{
+
+             }
+                .aios-gallery-checkbox-filter .aios-checkbox-sets{
+                    display: flex;
+                }
+                .aios-gallery-checkbox-filter .form-group{
+                    width: auto;
+                    display: inline-block;
+                    padding: 0 10px;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+                .aios-gallery-checkbox-filter .form-group:nth-child(2) {
+                    padding-left: 0;
+                }
+             .aios-gallery-checkbox-filter .styled-checkbox {
+                position: absolute;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox + label {
+                     position: relative;
+                     cursor: pointer;
+                     padding: 0;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox + label:before {
+                    content: '';
+                    margin-right: 10px;
+                    display: inline-block;
+                    vertical-align: text-top;
+                    width: 20px;
+                    height: 20px;
+                    background: white;
+                    border: 2px solid #bfbfbf;
+                     transition: all 0.3s linear;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox:hover + label:before {
+                     background: #144262;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox:checked + label:before {
+                     background: #144262;
+                     border-color:  #144262;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox:disabled + label {
+                     color: #b8b8b8;
+                     cursor: auto;
+                }
+                 .styled-checkbox:disabled + label:before {
+                     box-shadow: none;
+                     background: #ddd;
+                }
+                 .aios-gallery-checkbox-filter .styled-checkbox:checked + label:after {
+                     content: '';
+                     position: absolute;
+                     left: 5px;
+                     top: 11px;
+                     background: white;
+                     width: 2px;
+                     height: 2px;
+                     box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+                     transform: rotate(45deg);
+                     transition: all 0.3s linear;
+                }
+                 /** Check Box **/
+
+                /** Range Slider **/
+                .irs--round{
+                    height: auto;
+                }
+                span.irs-grid{
+                    display: none !important;
+
+                }
+                .irs--round .irs-min, .irs--round .irs-max{
+                    display: none !important;
+                }
+                    .irs--round .irs-from, .irs--round .irs-to, .irs--round .irs-single{
+                        background-color: transparent;
+                        border-radius: 4px;
+                        color: #999999;
+                        margin-top: 10px;
+                }
+                .irs--round .irs-bar {
+                    height: 3px;
+                    background-color: #144262;
+                    padding: 0 !important;
+                }
+                .irs--round .irs-line {
+                    top: 36px;
+                    height: 3px;
+                    background-color: #ababab;
+                    border-radius: 0;
+                    padding: 0 !important;
+                }
+                .irs--round .irs-handle {
+                    top: 30px;
+                    width: 13px;
+                    height: 13px;
+                    border: 0;
+                    background-color: #144262;
+                    border-radius: 24px;
+                    box-shadow: 0 0 0;
+                }
+                    .irs--round .irs-handle.state_hover, .irs--round .irs-handle:hover{
+                        background-color: #144262;
+                    }
+                    .irs--round .irs-from:before, .irs--round .irs-to:before, .irs--round .irs-single:before{
+                        display: none !important;
+                    }
+                    .irs--round .irs-line{
+                        top: 0 !important;
+                    }
+                    .irs--round .irs-bar{
+                        top: 0 !important;
+                    }
+                    .irs--round .irs-handle{
+                            top: -6px !important;
+                    }
+                /**  Range Slider **/
+                /** Dropdown **/
+                .aios-gallery-dropdown-filter{
+                    position: relative;
+                    padding: 0 !important;
+                    transition: all 0.3s linear;
+                }
+                    .aios-gallery-dropdown-filter:before {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        content: "";
+                    }
+                     .aios-gallery-dropdown-filter.active{
+                         background-color: #144262;
+                         border-color: #144262 !important;
+                     }
+                    .aios-gallery-dropdown-filter:after {
+                        display: block;
+                        content: "";
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 7px 5px 10px 5px;
+                        border-color: #144262 transparent transparent transparent;
+                        position: absolute;
+                        right: 11%;
+                        top: 53%;
+                        transform: translate(-50%, -50%);
+                    }
+                         .aios-gallery-dropdown-filter.active:after{
+                            border-color: #fff transparent transparent transparent;
+                         }
+                    .aios-gallery-dropdown-filter input {
+                        width: 100%;
+                        background-color: transparent;
+                        border: none;
+                        height: 100%;
+                        text-transform: uppercase;
+                        color: #333333;
+                        letter-spacing: 0.1em;
+                        padding: 0 31px;
+                    }
+                         .aios-gallery-dropdown-filter.active input{
+                             color: #fff;
+                         }
+
+                    .aios-gallery-dropdown-filter ul {
+                        z-index: 9;
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        width: 100%;
+                        }
+
+                            .aios-gallery-dropdown-filter ul li {
+                                cursor: pointer;
+                                background: #e9eef1;
+                                color: #1a4666;
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                letter-spacing: 0.1em;
+                                padding: 20px 31px;
+                                transition: all 0.3s linear;
+
+                            }
+
+                            .aios-gallery-dropdown-filter ul li:hover {
+                                color: #ffffff;
+                                background: #5f8cc7;
+                            }
+                /** Dropdown **/
+                /** Dropdown V2 **/
+                .aios-gallery-searc-second{
+                    display: none;
+                }
+                .aios-gallery-form-second-level{
+                    background: #194463;
+                    display: flex;
+                    z-index: 30;
+                }
+                .aios-gallery-dropdown-filter-v2{
+                    position: relative;
+                    padding: 50px 0 40px;
+                    flex-grow: 1;
+                    border-left: 1px solid #2a4e67;
+                }
+                    .aios-gallery-dropdown-filter-v2 .aios-gallery-text-wrap{
+                        padding: 0 40px;
+                    }
+                    .aios-gallery-dropdown-filter-v2 span {
+                        color: #fff;
+                        text-align: center;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        letter-spacing: 2px;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                    }
+                        .aios-gallery-dropdown-filter-v2 span:after{
+                            display: block;
+                            content: "";
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 7px 5px 2px 5px;
+                            border-color: #fff transparent transparent transparent;
+                            margin-left: 5%;
+                        }
+                    .aios-gallery-dropdown-filter-v2:before {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        content: "";
+                        z-index: 20;
+                    }
+                     .aios-gallery-dropdown-filter-v2.active{
+                         background-color: #144262;
+                         border-color: #144262 !important;
+                     }
+                    .aios-gallery-dropdown-filter-v2:after {
+
+                    }
+                         .aios-gallery-dropdown-filter-v2.active:after{
+                            border-color: #fff transparent transparent transparent;
+                         }
+                    .aios-gallery-dropdown-filter-v2 input {
+                        width: 100%;
+                        background-color: transparent;
+                        border: none;
+                        height: 100%;
+                        text-transform: uppercase;
+                        color: #ffff;
+                        letter-spacing: 0.1em;
+                        padding: 0;
+                        opacity: 0;
+                        font-size: 11px;
+                        display: block;
+                    }
+                         .aios-gallery-dropdown-filter-v2.active input{
+                             color: #fff;
+                         }
+
+                    .aios-gallery-dropdown-filter-v2 ul {
+                            z-index: 9;
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            width: 100%;
+                        }
+
+                            .aios-gallery-dropdown-filter-v2 ul li {
+                                cursor: pointer;
+                                background: #e9eef1;
+                                color: #1a4666;
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                letter-spacing: 0.1em;
+                                padding: 20px 31px;
+                                transition: all 0.3s linear;
+
+                            }
+
+                            .aios-gallery-dropdown-filter-v2 ul li:hover {
+                                color: #ffffff;
+                                background: #5f8cc7;
+                            }
+                /** Dropdown V2 **/
+                /** Submit Button**/
+                .aios-gallery-submit-bttn{
+                    padding: 0 !important;
+                }
+                .aios-gallery-submit-bttn input {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    background: #9dced2;
+                    color: #fff;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    transition: all 0.3s linear;
+                }
+
+                .aios-gallery-submit-bttn input:hover {
+                    background: #144262;
+                }
+                /** Submit Button **/
+
+/** Third Level **/
+.aios-gallery-form-third-level{
+    background: #052e4a;
+}
+    .aios-gallery-form-third-level .aios-gallery-third-level-wrap {
+        display: none;
+        position: relative;
+        z-index: 2;
+    }
+        .aios-gallery-form-third-level .aios-gallery-third-level-wrap .aios-gallery-flex{
+              display: flex;
+
+        }
+         .aios-gallery-third-level-wrap  .aios-gallery-dropdown-filter{
+            padding: 50px 0!important;
+             flex-grow: 1;
+             border-left: 1px solid #2a4e67;
+         }
+            .aios-gallery-third-level-wrap  .aios-gallery-dropdown-filter input{
+                color: #fff;
+                font-size: 12px;
+            }
+
+            .aios-gallery-third-level-wrap .aios-gallery-dropdown-filter:after {
+                border-color: #fff transparent transparent transparent;
+            }
+                 .aios-gallery-third-level-wrap .aios-gallery-dropdown-filter ul{
+                    height: auto;
+                    max-height: 250px;
+                    overflow-y: scroll;
+                 }
+
+
+/** Third Level **/
+
+/** Search Filter **/
+.aios-gallery-container{
+    padding-top: 97px;
+}
+.aios-gallery-pagination{
+     padding: 50px 0 100px;
+}
+@media only screen and (min-width: 1366px){
+    .aios-gallery-list .aios-gallery-wrap .aios-gallery-content ul li{
+        font-size: 12px;
+    }
+}

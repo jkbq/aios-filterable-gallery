@@ -1,7 +1,7 @@
 <?php
 	/** Note: **/
 	/** prefix for option name **/
-	$template_name = 'filterable_gallery-details-page-default';
+	$template_name = 'listings-details-page-default'; 
 ?>
 <!-- BEGIN: Row Box -->
 <div class="wpui-row wpui-row-box">

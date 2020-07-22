@@ -2,6 +2,9 @@
 .check-column{
     display: none !important;
 }
+#poststuff #titlewrap{
+    display: none;
+}
 .column-title {
     padding-left: 20px !important;
 }
@@ -10,4 +13,13 @@ tfoot {
 }
 .tablenav.bottom {
     display: none !important;
+}
+#titlediv #edit-slug-box {
+    font-size: 16px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+}
+#titlediv #edit-slug-box strong {
+    color: #000;
 }
