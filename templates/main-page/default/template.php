@@ -5,26 +5,6 @@
         'hide_empty' => false
     ) );
 
-    // args
-$args = array(
-	'numberposts'	=> -1,
-	'post_type'		=> 'cases',
-	'meta_query'	=> array(
-		'relation'		=> 'LIKE',
-		array(
-			'key'		=> 'measurement_before',
-			'value'		=> '55 inches',
-			'compare'	=> '='
-		)
-	)
-);
-
-
-// query
-$the_query = new WP_Query( $args );
-
-var_dump($the_query->posts)
-
 ?>
 	<div id="aios-gallery-banner">
         <div class="aios-gallery-banner-wrap">
@@ -44,6 +24,7 @@ var_dump($the_query->posts)
                     <input type="hidden" name="page" value="<?= $params['page'] ?>" id="paginate-value">
                     <input type="hidden" name="sorts" value="<?= $params['sorts'] ?>" id="sort">
                     <input type="hidden" name="case_number" value="<?= $params['case'] ?>" id="case-number">
+                    <input type="hidden" name="procedure" value="" id="procedure-main">
                     <div class="aios-gallery-form-wrap">
 
 
@@ -105,7 +86,7 @@ var_dump($the_query->posts)
                     <div class="aios-gallery-searc-second">
                         <div class="aios-gallery-form-second-level">
                             <?php
-                                foreach ( $procedures as $procedure){
+                                foreach ( $procedures as  $procedure){
 
                                     $html = '';
 
@@ -114,7 +95,7 @@ var_dump($the_query->posts)
                                         $html .= '<div class="aios-gallery-dropdown-filter-v2">';
                                             $html .= '<div class="aios-gallery-text-wrap">';
                                                 $html .= '<span>'.$procedure->name.' <em></em></span>';
-                                                $html .= '<input type="text" name="procedure"  placeholder="'.$procedure->name.'" value="" disable>';
+                                                $html .= '<input type="text"  placeholder="'.$procedure->name.'" value="" disable id="procedure-datas">';
                                             $html .= '</div>';
                                             $html .= '<ul>';
                                              foreach ( $procedures as $sub_procedure){
@@ -161,7 +142,6 @@ var_dump($the_query->posts)
                                             if ($procedure->name  == $group_field->post_title){
                                                 $fieldGroup = acf_get_field_group($group_field->ID);
                                                 $fields = acf_get_fields_by_id($group_field->ID);
-
 
 
 

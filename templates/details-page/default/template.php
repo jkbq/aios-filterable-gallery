@@ -31,10 +31,13 @@ $doctors = get_field( 'doctors' );
                             <h1>CASE NO: <span><?= $case_number ?></span></h1>
 
                             <div class="aios-procedures-labels">
-                                <a href="#">View All</a>
+                                <a href="#" class="gallery-view-all">View All</a>
                                 <?php
                                     foreach ($procedures as $procedure){
-                                        echo ', <a href="#">'.$procedure->name.'</a>';
+                                         if ($procedure->parent != 0) {
+
+                                             echo ', <a href="#"  class="gallery-view-once" data-trigger="'.$procedure->slug.'">' . $procedure->name . '</a>';
+                                         }
                                     }
                                 ?>
                             </div>
@@ -60,9 +63,6 @@ $doctors = get_field( 'doctors' );
                     <?php
                         foreach ($procedures as $key =>$procedure){
 
-                            if ($key == 0) {
-                                $procedure_primary = $procedure->name;
-                            }
 
 
                             foreach ($group_fields as $group_field){
@@ -71,12 +71,10 @@ $doctors = get_field( 'doctors' );
                                 $html  = '';
                                 if ($procedure->name  == $group_field->post_title){
 
-
-
                                     $fieldGroup = acf_get_field_group($group_field->ID);
                                     $fields = acf_get_fields_by_id($group_field->ID);
 
-                                    $html .='<div class="aios-gallery-md-procedures">';
+                                    $html .='<div class="aios-gallery-md-procedures '.$procedure->slug.'">';
                                         $html .='<div class="aios-gallery-md-procedures-slideshow">';
                                             foreach ($fields as $field){
 
@@ -87,15 +85,24 @@ $doctors = get_field( 'doctors' );
                                                         $imgBefore  =  $img['before']['ID'];
                                                         $imgAfter   = $img['after']['ID'];
                                                          $html .= '<div class="aios-gallery-image">';
-                                                            $html .= '<canvas width="442" height="329"></canvas>';
-                                                            $html .= ' <div class="img-comp-container">
-                                                                <div class="img-comp-img">
-                                                                    <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
-                                                                </div>
-                                                                <div class="img-comp-img img-comp-overlay">
-                                                                    <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
-                                                                </div>
-                                                            </div>';
+                                                            if (empty($imgAfter)){
+                                                                $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>';
+                                                            }elseif(empty($imgBefore)){
+                                                                  $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>';
+                                                            }else{
+                                                                  $html .= '<canvas width="442" height="329"></canvas>';
+                                                            }
+
+                                                             if (!empty($imgBefore) && !empty($imgAfter)){
+                                                                $html .= ' <div class="img-comp-container">
+                                                                    <div class="img-comp-img">
+                                                                        <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
+                                                                    </div>
+                                                                    <div class="img-comp-img img-comp-overlay">
+                                                                        <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
+                                                                    </div>
+                                                                </div>';
+                                                             }
                                                         $html .='</div>';
                                                      }
                                                 }
@@ -103,7 +110,9 @@ $doctors = get_field( 'doctors' );
                                             }
                                         $html .='</div><!-- end of slideshow -->';
 
-                                        $html .= '<h2>'.$procedure_primary.' - '.$procedure->name.'</h2>';
+                                        $procedure_primary  = get_term_by('id',  $procedure->parent, 'procedure' );
+
+                                        $html .= '<h2>'.$procedure_primary->name.' - '.$procedure->name.'</h2>';
 
                                         $html .= '<div class="aios-gallery-md-procedures-method">';
                                             foreach ($fields as $field) {

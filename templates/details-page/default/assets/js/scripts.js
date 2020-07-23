@@ -3,6 +3,35 @@
 
     var app = {
 
+        details_show : function(){
+
+                $viewAll =  $('.gallery-view-all');
+                $viewOnce   = $('.gallery-view-once');
+
+                $viewAll.on('click', function (e) {
+
+                    e.preventDefault();
+
+                    $('.aios-gallery-md-procedures').fadeIn();
+                });
+
+                
+                $viewOnce.on('click', function (e) {
+
+                        e.preventDefault();
+                        $('.aios-gallery-md-procedures').fadeOut();
+
+                        var activeTab = $(this).data("trigger");
+                        $("."+activeTab).fadeIn();
+
+                })
+
+
+
+
+
+
+        },
         hero: function () {
 
             var $main = $('.aios-gallery-md-procedures-slideshow');
@@ -47,12 +76,14 @@
         },
         init: function () {
             this.hero();
+            this.details_show();
+            this.testimonials();
         }
     }
 
     $(document).ready(function () {
         /* Initialize all app functions */
-        app.testimonials();
+
         app.init();
     });
 

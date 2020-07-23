@@ -49,7 +49,6 @@ var_dump($test);
             foreach ( $custom_field_keys as $key => $fieldkey )
             {
 
-                var_dump($fieldkey);
             }
 
         }

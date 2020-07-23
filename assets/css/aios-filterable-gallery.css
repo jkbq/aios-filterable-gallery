@@ -186,6 +186,7 @@
             background-color: rgb(255, 255, 255);
             overflow: hidden;
             transition: all 0.3s linear;
+            min-height: 673px;
 
         }
             .aios-gallery-list .aios-gallery-wrap:hover{

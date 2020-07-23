@@ -71,6 +71,8 @@
 /** Search Filter **/
 .aios-gallery-search-filters{
     position: relative;
+    z-index: 10;
+    margin-top: 60px;
 }
     .aios-gallery-search-filters .aios-gallery-form{
         position: relative;

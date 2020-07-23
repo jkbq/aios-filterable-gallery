@@ -61,9 +61,9 @@ if ( !class_exists( 'aios_filterable_gallery_init' ) ) {
 		 */
 		public function render_sub_pages() {
 			add_submenu_page(
-				'aios-all-in-one',
-				'Filterable Gallery',
-				'Filterable Gallery',
+				'edit.php?post_type=cases',
+				'Settings',
+				'Settings',
 				'manage_options', 
 				'filterable_gallery-settings',
 				array($this,'render_backend')

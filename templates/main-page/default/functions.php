@@ -79,7 +79,9 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 
 
 		    $data = $_POST['data'];
+		    
             parse_str($data, $params);
+
 
             $meta_query = array(
                 'relation' => 'AND'
@@ -194,71 +196,68 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
                 $ethnicity = get_field( 'ethnicity', $post_id);
 
 
-                $terms = wp_get_post_terms( $post_id, 'procedure',  array( 'orderby' => 'parent', 'order' => 'ASC' ) );
+                $procedures = wp_get_post_terms( $post_id, 'procedure',  array( 'orderby' => 'parent', 'order' => 'ASC' ) );
 
                 $args = array(
-                    'numberposts' => 10,
+                    'numberposts' => -1,
                     'post_type'   => 'acf-field-group'
                 );
 
                 $group_fields = get_posts( $args );
 
-                $filterable_group_id = array();
-                $term_names          = array();
-
-
-                foreach ( $terms as $key => $term ) {
-                    if ($key != 0) {
-                        $term_names[] = $term->name;
-                    }
-                }
-                foreach ($group_fields as $group_field){
-                     if(in_array($group_field->post_title, $term_names)){
-                        $filterable_group_id[] = $group_field->ID;
-                     }
-                }
 
                 $html .= '<div class="col-md-4 aios-gallery-list">';
                     $html .= '<div class="aios-gallery-wrap">';
 
                         $html .= '<div class="aios-gallery-list-wrap">';
 
-                        if ($filterable_group_id != null){
 
-                            if(function_exists('acf_get_field_groups')) {
 
-                                foreach ($filterable_group_id as $valID){
-                                    $fieldGroup = acf_get_field_group($valID);
-                                    $fields = acf_get_fields_by_id($valID);
-                                     foreach ($fields as $field) {
+                         foreach ($procedures as $key =>$procedure) {
 
-                                        $field_label = $field['label'];
-                                        $field_name = $field['name'];
+                              if ($procedure->parent != 0) {
 
-                                         if ($field['label'] == 'Add Photos'){
+                                  foreach ($group_fields as $group_field){
+                                    if ($procedure->name  == $group_field->post_title) {
+                                        $fieldGroup = acf_get_field_group($group_field->ID);
+                                        $fields = acf_get_fields_by_id($group_field->ID);
 
-                                                $imgGallery = get_field($field_name, $post_id);
+                                        foreach ($fields as $field) {
+
+                                            if ($field['label'] == 'Add Photos') {
+                                                $imgGallery = get_field($field['name'], $post_id);
                                                 $imgBefore  =  $imgGallery[0]['before']['ID'];
                                                 $imgAfter   = $imgGallery[0]['after']['ID'];
 
-                                                $html .= '<div class="aios-gallery-image">';
-                                                    $html .= '<canvas width="442" height="329"></canvas>';
-                                                    $html .= ' <div class="img-comp-container">
-                                                        <div class="img-comp-img">
-                                                            <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
-                                                        </div>
-                                                        <div class="img-comp-img img-comp-overlay">
-                                                            <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
-                                                        </div>
-                                                    </div>';
-                                                $html .='</div>';
 
-                                         }
+                                                    $html .= '<div class="aios-gallery-image">';
+                                                        if (empty($imgAfter)){
+                                                            $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>';
+                                                        }elseif(empty($imgBefore)){
+                                                              $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>';
+                                                        }else{
+                                                              $html .= '<canvas width="442" height="329"></canvas>';
+                                                        }
 
-                                     }
-                                }
-                            }
-                        }
+                                                        if (!empty($imgBefore) && !empty($imgAfter)){
+                                                            $html .= ' <div class="img-comp-container">
+                                                                <div class="img-comp-img">
+                                                                    <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
+                                                                </div>
+                                                                <div class="img-comp-img img-comp-overlay">
+                                                                    <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
+                                                                </div>
+                                                            </div>';
+                                                        }
+                                                    $html .='</div>';
+
+                                            }
+                                        }
+                                    }
+                                  }
+                              }
+                         }
+
 
                         $html .=  '</div>';
                         $html .='<div class="aios-gallery-content">';
@@ -266,9 +265,10 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
                                  $html .= '<span>CASE NO: <strong> '.$case_number.' </strong></span>';
                                  $html .= '<div class="aios-procedures-names">';
 
-                                     foreach ($terms as $key => $term ){
-                                         if ($key != 0) {
-                                             $html .= '<span>' . $term->name .'</span>';
+                                     foreach ($procedures as $key => $procedure ){
+
+                                         if ($procedure->parent != 0) {
+                                             $html .= '<span>' . $procedure->name .'</span>';
                                          }
                                      }
                                  $html .= '</div>';

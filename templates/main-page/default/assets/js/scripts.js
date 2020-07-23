@@ -59,12 +59,16 @@
 
 				dropDown.on("click", "li", function(){
 					$('.aios-gallery-dropdown-filter-v2 input').animate({opacity: 0});
-					input.val( $(this).data('slug') );
+
+					input.val( $(this).text() );
+					$('.aios-gallery-third-level-wrap input').val('');
 					input.animate({opacity: 1}, 1000);
 
-					jQuery('.aios-gallery-third-level-wrap').slideUp();
-					var activeTab = jQuery(this).data("slug");
-					jQuery("."+activeTab).slideDown();
+					$('#procedure-main').val( $(this).data('slug'));
+
+					$('.aios-gallery-third-level-wrap').slideUp();
+					var activeTab = $(this).data("slug");
+					$("."+activeTab).slideDown();
 
 				});
 
