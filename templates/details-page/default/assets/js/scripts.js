@@ -40,7 +40,7 @@
                 $(v).slick({
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    autoplay: true,
+                    autoplay: false,
                     dots: true,
                     arrows: true,
                     swipe: false,
@@ -55,6 +55,7 @@
                 infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 3,
+                autoplay:false,
                 arrows: true,
                 prevArrow: $('.aios-gallery-prev'),
                 nextArrow: $('.aios-gallery-next'),

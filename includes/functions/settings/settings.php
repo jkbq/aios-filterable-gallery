@@ -6,7 +6,6 @@
 use AIOS\Gallery\Classses\Constant;
 $test = get_option('filterable_gallery_settings');
 
-var_dump($test);
 ?>
 
 <!-- BEGIN: Row Box -->
@@ -32,28 +31,6 @@ var_dump($test);
 		</div>
 </div>
 <!-- END: Row Box -->
-
-
-    <?php
-        $args = array(
-            'post_type'  => 'acf-field-group',
-
-        );
-        $postslist = get_posts( $args );
-
-        foreach ( $postslist->posts as $value){
-
-            $groupID= $value->ID;
-
-            $custom_field_keys = get_post_custom_keys($groupID);
-            foreach ( $custom_field_keys as $key => $fieldkey )
-            {
-
-            }
-
-        }
-
-    ?>
 
 <div class="wpui-row wpui-row-submit">
 	<div class="wpui-col-md-12">
