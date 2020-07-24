@@ -72,7 +72,7 @@
 .aios-gallery-search-filters{
     position: relative;
     z-index: 10;
-    margin-top: 60px;
+    margin-top: -60px;
 }
     .aios-gallery-search-filters .aios-gallery-form{
         position: relative;
@@ -270,7 +270,7 @@
                 /** Dropdown **/
                 .aios-gallery-dropdown-filter{
                     position: relative;
-                    padding: 0 !important;
+                    padding: 0;
                     transition: all 0.3s linear;
                 }
                     .aios-gallery-dropdown-filter:before {
@@ -508,5 +508,103 @@
 @media only screen and (min-width: 1366px){
     .aios-gallery-list .aios-gallery-wrap .aios-gallery-content ul li{
         font-size: 12px;
+    }
+}
+@media only screen and (max-width: 1024px) {
+
+    .aios-gallery-search-filters {
+        margin-top: 30px;
+    }
+
+    .aios-gallery-dropdown-filter input{
+        padding: 0;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:first-child{
+        padding: 33px 20px;
+    }
+
+    .aios-gallery-list .aios-gallery-wrap{
+        min-height: 562px;
+    }
+}
+/* iPad(portrait) | Galaxy Tab 4(portrait)  */
+@media only screen and (max-width: 991px) {
+	/* The following are used on inner pages. Please edit carefully. */
+
+    .aios-gallery-search-filters{
+        margin-top: 20px;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap {
+        flex-flow: row wrap;
+    }
+
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:first-child {
+        width: 40%;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(2) {
+        width: 60%;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(3){
+        width: 40%;
+        border-left: 0;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(4) {
+        width: 35%;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-submit-bttn {
+        width: 25%;
+    }
+        .aios-gallery-dropdown-filter-v2 ul{
+            width: 100%;
+        }
+
+        .aios-gallery-form-second-level {
+            flex-flow: row wrap;
+        }
+        .aios-gallery-form-third-level .aios-gallery-third-level-wrap .aios-gallery-flex{
+            flex-flow: row wrap;
+        }
+
+
+        #aios-gallery-banner .aios-gallery-banner-wrap canvas {
+            min-height: 400px;
+        }
+            #aios-gallery-banner .aios-gallery-title h1 span{
+                font-size: 60px;
+            }
+            #aios-gallery-banner .aios-gallery-title h1:after{
+                right: -25%;
+            }
+}
+
+/* Galaxy Tab 3(portrait) | Galaxy S5(landscape) */
+@media only screen and (max-width: 767px) {
+
+}
+
+/* Galaxy S5(portrait) | iPod Touch(landscape) | iPod Touch(portrait) */
+@media only screen and (max-width: 480px) {
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:first-child{
+        width: 100%;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(2) {
+        width: 100%;
+        border-left: 0;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(3){
+        width: 100%;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(4) {
+        width: 100%;
+        border-left: 0;
+        padding: 40px 2px;
+    }
+    .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-submit-bttn {
+        width: 100%;
+    }
+    .aios-gallery-submit-bttn input{
+        padding: 30px;
     }
 }

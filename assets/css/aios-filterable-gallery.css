@@ -523,3 +523,12 @@
     text-transform: uppercase;
     text-align: center;
 }
+
+/** Gallery Content **/
+
+/* iPad(landscape) | iPad(landscape) | Galaxy Tab 4 (landscape) | Galaxy Tab 3 (landscape) */
+@media only screen and (max-width: 1199px) {
+
+}
+
+
