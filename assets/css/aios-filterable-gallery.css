@@ -470,6 +470,10 @@
                 .aios-gallery-list:hover .aios-gallery-wrap ul.slick-dots  li button{
                      background: #fff;
                  }
+
+                .aios-gallery-list .aios-gallery-list-wrap ul.slick-dots li.slick-active button{
+                    background: #5f8cc7;
+                }
 .aios-gallery-pagination{
 
 }
