@@ -153,7 +153,7 @@
                                                             $html .='  <input type="text" name="'.$field['name'].'"  placeholder="'.$field['label'].'" value="'.$params[$field['name']].'">';
                                                             $html .='<ul>';
                                                             foreach ($field['choices'] as $choice){
-                                                                $html .= '<li>'.$choice.'</li>';
+                                                                $html .= '<li>'.htmlentities($choice).'</li>';
                                                             }
                                                             $html .='</ul>';
                                                         $html .=' </div><!-- end of gallery dropdown -->';
