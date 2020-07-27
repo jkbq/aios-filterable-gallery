@@ -185,7 +185,17 @@
             border-radius: 5px;
             background-color: rgb(255, 255, 255);
             overflow: hidden;
+            transition: all 0.3s linear;
+            min-height: 673px;
+
         }
+            .aios-gallery-list .aios-gallery-wrap:hover{
+                    background: #9dced2;
+                    background: -moz-linear-gradient(top, #9dced2 0%, #9dced2 30%, #73a4a8 91%, #73a4a8 100%);
+                    background: -webkit-linear-gradient(top, #9dced2 0%,#9dced2 30%,#73a4a8 91%,#73a4a8 100%);
+                    background: linear-gradient(to bottom, #9dced2 0%,#9dced2 30%,#73a4a8 91%,#73a4a8 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dced2', endColorstr='#73a4a8',GradientType=0 );
+            }
 
         .aios-gallery-image {
             position: relative;
@@ -277,8 +287,6 @@
         .aios-gallery-list .aios-gallery-wrap .aios-gallery-content{
             padding: 40px;
             position: relative;
-            transition: all 0.3s linear;
-
         }
             .aios-gallery-list .aios-gallery-wrap .aios-gallery-content:after{
                 display: block;
@@ -288,11 +296,6 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: #9dced2;
-                background: -moz-linear-gradient(top, #9dced2 0%, #9dced2 30%, #73a4a8 91%, #73a4a8 100%);
-                background: -webkit-linear-gradient(top, #9dced2 0%,#9dced2 30%,#73a4a8 91%,#73a4a8 100%);
-                background: linear-gradient(to bottom, #9dced2 0%,#9dced2 30%,#73a4a8 91%,#73a4a8 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dced2', endColorstr='#73a4a8',GradientType=0 );
                 z-index: 1;
                 opacity: 0;
                 transition: all 0.3s linear;
@@ -307,15 +310,37 @@
                 z-index: 2;
             }
                 .aios-gallery-list .aios-gallery-wrap .aios-gallery-content span{
-                    font-weight: 700;
-                    font-size: 15px;
-                    color: #9dced2;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #4a648d;
                     text-transform: uppercase;
                      transition: all 0.3s linear;
                 }
+                    .aios-gallery-list .aios-gallery-wrap .aios-gallery-content span em{
+                        font-size: 20px;
+                    }
                     .aios-gallery-list:hover .aios-gallery-wrap .aios-gallery-content span{
                         color: #fff;
                     }
+
+                    .aios-gallery-list .aios-gallery-wrap .aios-gallery-content .aios-procedures-names{
+                        display: block;
+                        line-height: 1.4;
+                        padding: 15px 0;
+                        min-height: 115px;
+                    }
+                        .aios-gallery-list .aios-gallery-wrap .aios-gallery-content .aios-procedures-names span{
+                            display: block;
+                            color: #696969;
+                            font-size: 20px;
+                            text-transform: uppercase;
+                            font-weight: 400;
+                            transition: all 0.3s linear;
+
+                        }
+                             .aios-gallery-list .aios-gallery-wrap:hover .aios-gallery-content .aios-procedures-names span{
+                                 color: #fff;
+                             }
                 .aios-gallery-list .aios-gallery-wrap .aios-gallery-content h4{
                     color: #75a6aa;
                     font-size: 30px;
@@ -338,7 +363,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 51px;
+                    margin-top: 10px;
 
                 }
                     .aios-gallery-list .aios-gallery-wrap .aios-gallery-content ul li{
@@ -382,7 +407,73 @@
                      .aios-gallery-list:hover .aios-gallery-wrap .aios-gallery-content em{
                          opacity: 1;
                      }
+            .aios-gallery-list-wrap .slick-slide {
+                height: auto;
+            }
 
+            .aios-gallery-list-wrap .slick-arrow {
+                position: absolute;
+                bottom: -1%;
+                font-family: agentimage!important;
+                border: none;
+                background: transparent;
+                font-size: 0;
+                color: #dddddd;
+            }
+
+            .aios-gallery-list-wrap .slick-slider, .slick-slider *,
+            .aios-gallery-list-wrap .slick-slider a,
+            .aios-gallery-list-wrap input:focus,
+            .aios-gallery-list-wrap select:focus,
+            .aios-gallery-list-wrap textarea:focus{
+                outline: none;
+            }
+                .aios-gallery-list .aios-gallery-list-wrap .slick-arrow:after{
+                    display: block;
+                    font-size: 20px;
+                }
+                    .aios-gallery-list .aios-gallery-list-wrap:hover .slick-arrow:after{
+                        color: #fff;
+                    }
+                .aios-gallery-list .aios-gallery-list-wrap .slick-arrow.slick-next{
+                    right: 25%;
+                }
+                .aios-gallery-list .aios-gallery-list-wrap .slick-arrow.slick-prev{
+                    left: 25%;
+                }
+                    .aios-gallery-list .aios-gallery-list-wrap .slick-arrow.slick-prev:after{
+                        content: "\b0001";
+                    }
+                    .aios-gallery-list .aios-gallery-list-wrap .slick-arrow.slick-next:after{
+                        content: "\b0002";
+                    }
+            .aios-gallery-list .aios-gallery-list-wrap ul.slick-dots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 17px 0 10px;
+            }
+
+                .aios-gallery-list .aios-gallery-list-wrap ul.slick-dots li{
+                    margin:  0 1%;
+                }
+
+                .aios-gallery-list .aios-gallery-list-wrap ul.slick-dots li button {
+                    background: #dddddd;
+                    border: honeydew;
+                    font-size: 0;
+                    width: 7px;
+                    height: 13px;
+                    border-radius: 50%;
+                    transition: all 0.3s linear;
+                }
+                .aios-gallery-list:hover .aios-gallery-wrap ul.slick-dots  li button{
+                     background: #fff;
+                 }
+
+                .aios-gallery-list .aios-gallery-list-wrap ul.slick-dots li.slick-active button{
+                    background: #5f8cc7;
+                }
 .aios-gallery-pagination{
 
 }
@@ -436,3 +527,12 @@
     text-transform: uppercase;
     text-align: center;
 }
+
+/** Gallery Content **/
+
+/* iPad(landscape) | iPad(landscape) | Galaxy Tab 4 (landscape) | Galaxy Tab 3 (landscape) */
+@media only screen and (max-width: 1199px) {
+
+}
+
+

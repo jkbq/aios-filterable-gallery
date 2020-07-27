@@ -12,10 +12,10 @@
 		function __construct() {
 
 			generate_shortcode();
-			jQuery(window).on('load', function () {
-				jQuery('#procedurediv').insertAfter('.acf-postbox:first-child');
-				jQuery('#procedurediv').show();
-			});
+			// jQuery(window).on('load', function () {
+			// 	jQuery('#procedurediv').insertAfter('.acf-postbox:first-child');
+			// 	jQuery('#procedurediv').show();
+			// });
 		}
 
 		function copyToClipboard(selector){

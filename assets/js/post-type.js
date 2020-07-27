@@ -3,9 +3,8 @@
 
         function __construct() {
             deslect_radio();
-            //auto_title();
-            // auto_generateCase();
-            // permalink_changer();
+            auto_title();
+            permalink_changer();
         }
 
 
@@ -57,48 +56,21 @@
         function auto_title() {
 
             $title = $('#title');
-            $label = $('#title-prompt-text');
-            $case_number = $('[data-name="case_number"] input');
-            $procedure = $('[name="tax_input[procedure][]"]');
+            $case_number = $('#acf-field_5f0cd64365929');
 
-            $procedure.on('change', function () {
 
-                $procedureVal = $(this).parent().text();
+            $case_number.on('change', function () {
 
-                $title.val($procedureVal + ':' + $case_number.val());
+                $case_val = $(this).val();
 
-                if ($title.val() != '') {
-                    $label.addClass('screen-reader-text');
-                } else {
-                    $label.removeClass('screen-reader-text');
-                }
-            });
-
-            $case_number.on('input', function () {
-
-                $case_numberVal = $(this).val();
-
-                $title.val(''+ $('[name="tax_input[procedure][]"]:checked').parent().text() +':'+ $case_numberVal+' ');
-
+                $title.val($case_val);
 
             });
 
-        }
 
-        function auto_generateCase() {
-
-            $case_number = jQuery('[data-name="case_number"] input');
-            console.log($case_number.val());
-            var a = Math.floor(1000000 + Math.random() * 9000000);
-            a = String(a);
-            a = a.substring(0, 8);
-            if ($case_number.val() == '') {
-                $case_number.val(a);
-            }
 
 
         }
-
 
         /** Instantiate */
         __construct();

@@ -13,7 +13,6 @@
 		function __construct(){
 
 			aios_ion_slider();
-			aios_gallery_custom_dropdown();
 			aios_render_cases();
 			aios_search_func();
 			aios_sort();
@@ -29,30 +28,14 @@
 				}
 			});
 		}
-		function aios_gallery_custom_dropdown() {
 
-			let parent		= $(".aios-gallery-dropdown-filter");
-
-			parent.each(function(){
-				const input = $(this).find("input");
-				const dropDown = $(this).find("ul");
-
-				$(this).on("click", function(){
-					dropDown.stop().slideToggle();
-					$(this).toggleClass( 'active');
-				});
-
-				dropDown.on("click", "li", function(){
-					input.val( $(this).text() );
-				});
-			});
-
-		}
 		
 		function aios_render_cases() {
 				$.post( ajaxurl, {
 					'action' 	: 'aios_medical_post_filter',
-					'data'		: jQuery('.aios-gallery-form form').serialize(),
+					'data'		: jQuery('.aios-gallery-form input').filter(function () {
+							return !!this.value;
+						}).serialize(),
 				}, function(response) {
 					$('.aios-gallery-lists .row').append(response);
 					$('#loader').fadeOut();
@@ -60,6 +43,15 @@
 						opacity: 1,
 					});
 					initComparisons();
+					jQuery('.aios-gallery-list-wrap').slick({
+						dots: true,
+						infinite: false,
+						speed: 300,
+						swipe: false,
+						slidesToShow: 1,
+						slidesToScroll: 1,
+					});
+
 				} ).done( function() {
 
 				} );

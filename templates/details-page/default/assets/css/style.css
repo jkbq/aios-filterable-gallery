@@ -1,0 +1,431 @@
+/** Theme Reset **/
+#inner-page-wrapper{
+    margin-top: 0;
+    overflow: visible;
+}
+.ip-banner {
+    position: relative;
+}
+/** Theme Reset **/
+
+/** Gallery Header **/
+.aios-md-gallery-header {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -7%;
+    padding: 5%;
+}
+
+        .aios-md-gallery-header h1{
+            font-size: 45px;
+            color: #5f8cc7;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+            .aios-md-gallery-header h1 span{
+                color: #16386d;
+            }
+        .aios-md-gallery-header .aios-procedures-labels{
+
+        }
+           .aios-md-gallery-header .aios-procedures-labels a{
+                display: inline-block;
+                vertical-align: middle;
+                color: #16386d;
+                font-size: 20px;
+                font-weight: 300;
+                line-height: 1;
+            }
+    .aios-md-case-details{
+
+    }
+        .aios-md-case-details div{
+            display: inline-block;
+            color: #666666;
+            font-size: 13px;
+            text-transform: uppercase;
+            border-left: 1px solid #e5e5e5;
+            padding: 20px;
+        }
+            .aios-md-case-details div:first-child{
+                border-left: 0;
+            }
+            .aios-md-case-details div span{
+
+            }
+            .aios-md-case-details div strong{
+                font-size: 25px;
+                color: #16386d;
+                padding-left: 5px;
+            }
+/** Gallery Header **/
+/** Gallery Procedures **/
+/** Gallery Slideshow **/
+.aios-gallery-md-procedures{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 30px 150px 0px rgba(156, 156, 156, 0.19);
+    margin: 60px 0;
+    padding-bottom: 80px;
+}
+.aios-gallery-md-procedures-slideshow{
+
+}
+    .slick-slide{
+        height: auto !important;
+    }
+
+            .aios-gallery-md-procedures-slideshow .slick-arrow {
+                position: absolute;
+                bottom: -1%;
+                font-family: agentimage!important;
+                border: none;
+                background: transparent;
+                font-size: 0;
+                color: #dddddd;
+            }
+
+                .aios-gallery-md-procedures-slideshow .slick-arrow:after{
+                    display: block;
+                    font-size: 20px;
+                }
+
+               .aios-gallery-md-procedures-slideshow .slick-arrow.slick-next{
+                    right: 25%;
+                }
+                .aios-gallery-md-procedures-slideshow .slick-arrow.slick-prev{
+                    left: 25%;
+                }
+                    .aios-gallery-md-procedures-slideshow .slick-arrow.slick-prev:after{
+                        content: "\b0001";
+                    }
+                    .aios-gallery-md-procedures-slideshow .slick-arrow.slick-next:after{
+                        content: "\b0002";
+                    }
+                .aios-gallery-md-procedures-slideshow ul.slick-dots {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 17px 0 10px;
+                }
+
+                    .aios-gallery-md-procedures-slideshow ul.slick-dots li{
+                        margin:  0 0.5%;
+                    }
+
+                   .aios-gallery-md-procedures-slideshow ul.slick-dots li button {
+                        background: #dddddd;
+                        border: honeydew;
+                        font-size: 0;
+                        width: 7px;
+                        height: 13px;
+                        border-radius: 50%;
+                        transition: all 0.3s linear;
+                    }
+                         .aios-gallery-md-procedures-slideshow ul.slick-dots li.slick-active button{
+                             background: #5f8cc7;
+                         }
+
+/** Gallery Slideshow **/
+.aios-gallery-md-procedures h2{
+    color: #16386d;
+    font-size: 45px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.aios-gallery-md-procedures .aios-gallery-md-procedures-method {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+    .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div{
+        padding: 4%;
+        text-align: center;
+        border-left: 1px solid #e5e5e5;
+    }
+        .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div:first-child{
+            border-left: 0;
+        }
+        .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div h3{
+            font-size: 25px;
+            color: #16386d;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div span{
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #666666;
+        }
+.aios-gallery-md-procedures .aios-gallery-md-description{
+        padding: 10px 5%;
+}
+    .aios-gallery-md-procedures .aios-gallery-md-description p{
+        text-align: center;
+        color: #444444;
+        font-size: 13px;
+        line-height: 1.4;
+        padding: 10px 0;
+
+    }
+    
+    .aios-gallery-md-procedures .aios-gallery-popup-button{
+        display: block;
+        background-color: rgb(22, 56, 109);
+        color: #fff;
+        width: 328px;
+        height: 68px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 30px auto 0;
+        line-height: 68px;
+        transition: all .25s ease-in-out;
+    }
+        .aios-gallery-md-procedures .aios-gallery-popup-button:hover{
+          background-color: rgb(9, 39, 86);
+        }
+
+
+/** Gallery Procedures **/
+/** Testimonials **/
+.aios-filterable-testimonails{
+    width: 100%;
+    margin-top: 4%;
+}
+    .aios-filterable-testimonails .aios-filterable-testi-header{
+        width: 100%;
+        position: relative;
+    }
+
+    .aios-filterable-testimonails .aios-filterable-testi-header:after {
+        display: block;
+        content: "";
+        width: 100%;
+        height: 1px;
+        background: #f3f3f3;
+        position: absolute;
+        top: 64%;
+    }
+        .aios-filterable-testimonails .aios-filterable-testi-header h2{
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-transform: uppercase;
+            text-align: left;
+            color: #16386d;
+            background: #fff;
+            z-index: 2;
+            position: relative;
+            display: inline-block;
+            padding-right: 40px;
+        }
+             .aios-filterable-testimonails .aios-filterable-testi-header h2 span{
+                 display: block;
+                 font-weight: 300;
+                 color: #5f8cc7;
+                 font-size: 25px;
+             }
+.aios-filterable-case-control {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: flex;
+    background: #fff;
+    z-index: 4;
+}
+    .aios-filterable-case-control div {
+        font-size: 28px;
+        margin-left: 15px;
+        cursor: pointer;
+    }
+    .aios-filterable-testi-lists{
+        padding: 20px;
+    }
+        .aios-filterable-testi-lists a{
+            display: block;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.13);
+            color: #444444;
+            padding: 60px;
+            min-height: 361px;
+        }
+            .aios-filterable-testi-lists a p{
+                font-size: 13px;
+                padding: 10px 0;
+            }
+            .aios-filterable-testi-lists a span{
+                font-size: 20px;
+                color: #1c4682;
+            }
+/** Testimonials **/
+.slick-slider, .slick-slider *, .slick-slider a, input:focus, select:focus, textarea:focus{
+    outline: none;
+}
+/** Contact Form **/
+#aios-md-gallery-wrapper  .aios-filterable-contact {
+    position: relative;
+    z-index: 1;
+    padding: 167px 0 87px;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff url(../images/bg-c.png) no-repeat;
+    background-position: bottom left;
+    opacity: 0.25;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-title {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    text-align: center;
+    color: #16386d;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form,
+#aios-md-gallery-wrapper  .aios-filterable-contact-form form {
+    position: relative;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form {
+    margin-top: 28px;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form .row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form [class^=col-] {
+    padding: 13px 5px;
+    position: relative;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form [class^=col-].submit {
+    padding-top: 57px;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form .wpcf7-form-control-wrap {
+    display: block;
+    position: relative;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form input[type=text],
+#aios-md-gallery-wrapper  .aios-filterable-contact-form input[type=tel],
+#aios-md-gallery-wrapper  .aios-filterable-contact-form input[type=email],
+#aios-md-gallery-wrapper  .aios-filterable-contact-form textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    background: transparent;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1;
+    color: #16386d;
+    border-bottom: 1px solid #16386d;
+    padding: 0;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form input[type=submit] {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+    width: 165px;
+    max-width: 100%;
+    min-height: 52px;
+    border-radius: 4px;
+    background: #5f8cc7;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form input[type=submit]:hover {
+    background: #5379ab;
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form .ajax-loader {
+    margin: 0;
+    position: absolute;
+    top: 30px;
+    left: calc(50% - 8px);
+}
+
+#aios-md-gallery-wrapper  .aios-filterable-contact-form .wpcf7-response-output {
+    margin: 0;
+    text-align: center;
+}
+/** Contact Form **/
+@media only screen and (max-width: 992px) {
+    .aios-md-gallery-header{
+        flex-flow: column;
+    }
+        .aios-md-gallery-header h1 {
+            font-size: 25px;
+        }
+
+        .aios-md-gallery-header .aios-procedures-labels a{
+            font-size: 16px;
+        }
+        .aios-md-case-details div{
+            text-align: center;
+        }
+        .aios-md-case-details div span{
+            display: block;
+        }
+        .aios-md-case-details div strong {
+            display: block;
+        }
+    .aios-md-case-details {
+        padding: 22px 0;
+    }
+
+    .aios-gallery-md-procedures .aios-gallery-md-procedures-method{
+        flex-flow: column;
+        margin: 20px 0;
+    }
+    .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div{
+        border-left: none;
+        border-bottom: 1px solid #e5e5e5;
+        width: 100%;
+    }
+        .aios-gallery-md-procedures .aios-gallery-md-procedures-method > div:last-child{
+            border-bottom: 0;
+        }
+
+    .aios-filterable-testimonails .aios-filterable-testi-header h2 {
+        font-size: 30px;
+    }
+
+}
