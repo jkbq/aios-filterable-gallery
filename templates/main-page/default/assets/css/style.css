@@ -317,11 +317,12 @@
                          }
 
                     .aios-gallery-dropdown-filter ul {
-                        z-index: 9;
-                        display: none;
-                        position: absolute;
-                        top: 100%;
-                        width: 100%;
+                            z-index: 9;
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            width: 100%;
+                            left: 0;
                         }
 
                             .aios-gallery-dropdown-filter ul li {
@@ -505,6 +506,13 @@
 .aios-gallery-pagination{
      padding: 50px 0 100px;
 }
+
+.desktop-show{
+    display: block;
+}
+.mobile-show{
+    display: none;
+}
 @media only screen and (min-width: 1366px){
     .aios-gallery-list .aios-gallery-wrap .aios-gallery-content ul li{
         font-size: 12px;
@@ -595,6 +603,12 @@
 
 /* Galaxy S5(portrait) | iPod Touch(landscape) | iPod Touch(portrait) */
 @media only screen and (max-width: 480px) {
+    .desktop-show{
+        display: none;
+    }
+    .mobile-show{
+        display: block;
+    }
     .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:first-child{
         width: 100%;
     }
@@ -608,7 +622,7 @@
     .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap > div:nth-child(4) {
         width: 100%;
         border-left: 0;
-        padding: 40px 2px;
+        padding: 40px 20px;
     }
     .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-submit-bttn {
         width: 100%;

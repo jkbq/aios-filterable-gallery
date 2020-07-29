@@ -77,7 +77,7 @@
                         </div><!-- end of gallery dropdown -->
 
 
-                        <div class="aios-gallery-submit-bttn">
+                        <div class="aios-gallery-submit-bttn desktop-show">
                             <input type="submit" value="Search">
                         </div><!-- end of aios gallery submit -->
 
@@ -174,8 +174,11 @@
                             }
 
                         ?>
-                    </div>
 
+                    </div>
+                    <div class="aios-gallery-submit-bttn mobile-show">
+                        <input type="submit" value="Search">
+                    </div>
 
                 </form>
             </div><!-- end of form container -->
