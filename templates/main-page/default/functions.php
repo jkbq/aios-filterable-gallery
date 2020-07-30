@@ -196,7 +196,7 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
                 $ethnicity = get_field( 'ethnicity', $post_id);
 
 
-                $procedures = wp_get_post_terms( $post_id, 'procedure',  array( 'orderby' => 'parent', 'order' => 'ASC' ) );
+                $procedures = wp_get_post_terms( $post_id, 'procedure',  array( 'orderby' => 'title', 'order' => 'ASC' ) );
 
                 $args = array(
                     'numberposts' => -1,
