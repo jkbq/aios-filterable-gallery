@@ -110,19 +110,26 @@
 		
 		function aios_pagination() {
 
-			let li = $('.aios-gallery-pagination a');
+			  var current = $(".aios-gallery-numbers").text();
 
-			$('.aios-gallery-pagination li:first a').addClass('active');
-			li.on('click', function (e) {
-				e.preventDefault();
-				e.stopPropagation();
+				  $(".aios-gallery-pagination-prev").on("click", function() {
+					current = current - 1;
+					$(".aios-gallery-numbers").text(current);
+					$('#loader').fadeIn();
+					$('.aios-gallery-lists .row').empty();
+					$('#paginate-value').val(current);
+					aios_render_cases();
+				  });
+				  $(".aios-gallery-pagination-next").on("click", function() {
+						current = parseInt(current) + parseInt(1);
+						$(".aios-gallery-numbers").text(current);
+						$('#loader').fadeIn();
+						$('.aios-gallery-lists .row').empty();
+						$('#paginate-value').val(current);
+						aios_render_cases();
+				  });
 
-				li.removeClass('active');
-				$('input[name="page"]').val($(this).data('page'));
 
-				$('.aios-gallery-submit-bttn input').trigger('click');
-				$(this).addClass('active');
-			});
 		}
 
 		__construct();

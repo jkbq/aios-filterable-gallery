@@ -478,7 +478,7 @@
 
         }
          .aios-gallery-third-level-wrap  .aios-gallery-dropdown-filter{
-            padding: 50px 0!important;
+            padding: 50px 0;
              flex-grow: 1;
              border-left: 1px solid #2a4e67;
          }
@@ -594,6 +594,10 @@
             #aios-gallery-banner .aios-gallery-title h1:after{
                 right: -25%;
             }
+
+            .aios-gallery-dropdown-filter-v2 ul{
+                z-index: 40;
+            }
 }
 
 /* Galaxy Tab 3(portrait) | Galaxy S5(landscape) */
@@ -629,5 +633,9 @@
     }
     .aios-gallery-submit-bttn input{
         padding: 30px;
+    }
+
+    .aios-gallery-third-level-wrap  .aios-gallery-dropdown-filter{
+        padding: 50px 20px;
     }
 }
