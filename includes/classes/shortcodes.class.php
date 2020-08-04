@@ -30,10 +30,31 @@ if ( !class_exists( 'aios_filterable_shortcode' ) ) {
 
             if (!shortcode_exists('aios_filterable_gallery')) add_shortcode('aios_filterable_gallery', array($this, 'get_aios_filterable_shortcode_gallery'));
 
+            add_shortcode('gallery_case_serach', array($this, 'aios_filterable_case_search'));
+
 
         }
 
 
+        /**
+         * Display All Listings
+         *
+         * @since 3.1.8
+         * @access public
+         * @return string
+         */
+        public function aios_filterable_case_search($atts){
+
+            $html = '';
+
+            $html .= '<div class="aios-filterble-search">
+                        <form action="'.site_url().'/cases/" method="get">
+                            <input type="text" name="case" placeholder="Patient Gallery">
+                            <button></button>
+                        </form>
+                    </div>';
+            return $html;
+        }
         /**
          * Display All Listings
          *

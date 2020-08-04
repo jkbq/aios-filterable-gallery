@@ -77,7 +77,7 @@
                         </div><!-- end of gallery dropdown -->
 
 
-                        <div class="aios-gallery-submit-bttn">
+                        <div class="aios-gallery-submit-bttn desktop-show">
                             <input type="submit" value="Search">
                         </div><!-- end of aios gallery submit -->
 
@@ -174,8 +174,11 @@
                             }
 
                         ?>
-                    </div>
 
+                    </div>
+                    <div class="aios-gallery-submit-bttn mobile-show">
+                        <input type="submit" value="Search">
+                    </div>
 
                 </form>
             </div><!-- end of form container -->
@@ -213,15 +216,13 @@
 
                     ?>
                     <div class="aios-gallery-pagination <?= $num_pages > '1' ? '' : 'hide' ?>">
-                        <ul>
-                            <?php
-
-
-                                for($p = 1; $p <= $num_pages; $p++){
-                                    echo '<li><a href="'.$p.'" data-page="'.$p.'">'.$p.'</a></li>';
-                                }
-                            ?>
-                        </ul>
+                        <div class="aios-gallery-pagination-prev aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-p"></i></div>
+                        <div class="pagination-info">
+                              <div class="aios-gallery-numbers">1</div>
+                              <div class="aios-gallery-seprator">of</div>
+                              <div class="aios-gallery-final-count"><?= $num_pages ?></div>
+                        </div>
+                        <div class="aios-gallery-pagination-next aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-n"></i></div>
 
                     </div>
 
