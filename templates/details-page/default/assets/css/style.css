@@ -387,6 +387,69 @@
     text-align: center;
 }
 /** Contact Form **/
+/** Video **/
+.aios-gallery-video-wrap {
+    display: flex;
+    padding: 0 6%;
+    margin-top: 7%;
+}
+    .aios-video-gallery-title{
+        width: 29%;
+        padding-top: 5%;
+
+    }
+         .aios-video-gallery-title h3{
+             color: #16386d;
+             font-size: 45px;
+             text-transform: uppercase;
+             line-height: 1;
+         }
+          .aios-video-gallery-title p{
+                color: #444444;
+                font-size: 13px;
+                font-weight: 300;
+                padding-top: 12px;
+          }
+    .aios-gallery-video-preview{
+        width: 46%;
+        position: relative;
+        margin-left: 3%;
+        margin-right: 2%;
+    }
+        .aios-gallery-video-preview canvas{
+            display: block;
+            width: 100%;
+        }
+
+        .aios-gallery-video-thumbnails {
+            width: 20%;
+        }
+
+        .aios-gallery-video-thumbnails div {
+            width: 100%;
+            margin-bottom: 2%;
+        }
+
+        .aios-gallery-video-thumbnails canvas {
+            display: block;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .aios-gallery-video-preview .video-main-list {
+                position: relative;
+            }
+
+            .aios-gallery-video-preview iframe {
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+/** Video **/
 @media only screen and (max-width: 992px) {
     .aios-md-gallery-header{
         flex-flow: column;
@@ -427,5 +490,27 @@
     .aios-filterable-testimonails .aios-filterable-testi-header h2 {
         font-size: 30px;
     }
-
+.aios-gallery-video-wrap {
+    flex-flow: column;
+}
+.aios-video-gallery-title {
+    width: 100%;
+    padding-top: 0;
+}
+.aios-gallery-video-preview {
+    width: 100%;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 50px;
+}
+.aios-gallery-video-thumbnails {
+    width: 100%;
+}
+.aios-md-case-details{
+    text-align: center;
+}
+.aios-md-case-details div:last-child {
+    border: none;
+}
 }
