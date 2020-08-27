@@ -2,6 +2,54 @@
 get_header();
 $doctors = get_field( 'doctors' );
 
+
+function getEmbedUrl($url) {
+    // function for generating an embed link
+    $finalUrl = '';
+
+    if (strpos($url, 'facebook.com/') !== false) {
+        // Facebook Video
+        $finalUrl.='https://www.facebook.com/plugins/video.php?href='.rawurlencode($url).'&show_text=1&width=200';
+
+    } else if(strpos($url, 'vimeo.com/') !== false) {
+        // Vimeo video
+        $videoId = isset(explode("vimeo.com/",$url)[1]) ? explode("vimeo.com/",$url)[1] : null;
+        if (strpos($videoId, '&') !== false){
+            $videoId = explode("&",$videoId)[0];
+        }
+        $finalUrl.='https://player.vimeo.com/video/'.$videoId;
+
+    } else if (strpos($url, 'youtube.com/') !== false) {
+        // Youtube video
+        $videoId = isset(explode("v=",$url)[1]) ? explode("v=",$url)[1] : null;
+        if (strpos($videoId, '&') !== false){
+            $videoId = explode("&",$videoId)[0];
+        }
+        $finalUrl.='https://www.youtube.com/embed/'.$videoId;
+
+    } else if(strpos($url, 'youtu.be/') !== false) {
+        // Youtube  video
+        $videoId = isset(explode("youtu.be/",$url)[1]) ? explode("youtu.be/",$url)[1] : null;
+        if (strpos($videoId, '&') !== false) {
+            $videoId = explode("&",$videoId)[0];
+        }
+        $finalUrl.='https://www.youtube.com/embed/'.$videoId;
+
+    } else if (strpos($url, 'dailymotion.com/') !== false) {
+        // Dailymotion Video
+        $videoId = isset(explode("dailymotion.com/",$url)[1]) ? explode("dailymotion.com/",$url)[1] : null;
+        if (strpos($videoId, '&') !== false) {
+            $videoId = explode("&",$videoId)[0];
+        }
+        $finalUrl.='https://www.dailymotion.com/embed/'.$videoId;
+
+    } else{
+        $finalUrl.=$url;
+    }
+
+    return $finalUrl;
+}
+
 ?>
 <?php if(have_posts()) : ?>
 
@@ -141,8 +189,53 @@ $doctors = get_field( 'doctors' );
                                             }
 
                                             if ( $field['label'] == 'Video') {
-                                                $video = get_field($field['name'], $post_id);
-                                                $html .= '<a target="_blank" href="'.$video['url'].'" class="aios-video-popup aios-gallery-popup-button">click here to view video</a>';
+                                                $videos = get_field($field['name'], $post_id);
+                                                $html .= '<div class="aios-gallery-video-wrap">';
+                                                $html .= '<div class="aios-video-gallery-title">
+                                                                <h3>PROCEDURE  VIDEO</h3>
+                                                                <p>View the videos of the procedure buy clicking on the thumbnails on the right</p>
+                                                            </div>';
+                                                $html .='<div class="aios-gallery-video-preview">';
+                                                $html .='<canvas width="408" height="308"></canvas>';
+                                                $html .= '<iframe src="'.getEmbedUrl( $videos[0]['url']).'" width="640" height="357" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+                                                $html .='</div>';
+                                                $html .=' <div class="aios-gallery-video-thumbnails">';
+
+                                                         foreach ( $videos as $video) {
+                                                                $video_url = getEmbedUrl( $video['url'] ); ;
+                                                                $url_pieces = explode('/', $video_url);
+$video_type = '';
+                                                                if ( $url_pieces[2] == 'player.vimeo.com' ) { // If Vimeo
+                                                                    $video_type = 'vimeo';
+                                                                    $id = $url_pieces[4];
+                                                                    $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $id . '.php'));
+                                                                    $thumbnail = $hash[0]['thumbnail_large'];
+
+                                                                } elseif ( $url_pieces[2] == 'www.youtube.com' ) { // If Youtube
+                                                                     $video_type = 'youtube';
+                                                                    $extract_id = explode('?', $url_pieces[4]);
+                                                                    $id = $extract_id[0];
+                                                                    $thumbnail = 'http://img.youtube.com/vi/' . $id . '/mqdefault.jpg';
+
+                                                                }
+
+                                                               $html .= '<div class="aios-video-thumb '.$video_type.' ">
+                                                                <a href="'.$video_url.'?autoplay=1">
+                                                                    <canvas width="179" height="95" style="background-image:url('.$thumbnail.')"></canvas>
+                                                                </a>
+                                                            </div>';
+
+
+                                                        }
+
+
+                                                $html .='</div>';
+
+
+                                                $html .= '</div>';
+
+
+
                                             }
 
 
@@ -158,6 +251,11 @@ $doctors = get_field( 'doctors' );
                         }
 
                     ?>
+
+
+
+
+
 
             </div><!-- end of container -->
 
@@ -220,7 +318,7 @@ I just wanted them to know too that I appreciate their kindness.</p>
                                         <div class="col-md-10 col-md-offset-1">
                                             <div class="aios-filterable-contact-title">
                                                 <?php if ( count( $doctors ) == 1 ) : ?>
-                                                    <strong>Contact <?= get_field( 'last_name', $doctors[ 0 ][ 'doctors_name' ]->ID ) ?></strong>
+                                                    <strong>Contact <?= get_field( 'first_name', $doctors[ 0 ][ 'doctors_name' ]->ID ) ?> <?= get_field( 'last_name', $doctors[ 0 ][ 'doctors_name' ]->ID ) ?></strong>
                                                 <?php else : ?>
                                                     <strong>Contact US</strong>
                                                 <?php endif; ?>
