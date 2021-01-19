@@ -137,19 +137,50 @@ function getEmbedUrl($url) {
                                                                 $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>';
                                                             }elseif(empty($imgBefore)){
                                                                   $html .= '<canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>';
-                                                            }else{
-                                                                  $html .= '<canvas width="442" height="329"></canvas>';
                                                             }
 
                                                              if (!empty($imgBefore) && !empty($imgAfter)){
-                                                                $html .= ' <div class="img-comp-container">
-                                                                    <div class="img-comp-img">
-                                                                        <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
-                                                                    </div>
-                                                                    <div class="img-comp-img img-comp-overlay">
-                                                                        <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
-                                                                    </div>
-                                                                </div>';
+                                                                $html .= ' <div class="ba-wrap">
+                                                                            <h2 class="hidden">Before and After</h2>
+                                                                            
+                                                                            <div class="ba-slider-wrap">
+                                                                                <div class="ba-slider">
+                                                                                    <div class="ba-col before">
+                                                                                        <div class="ba-item">
+                                                                                            <div class="global-lines ba-lines">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                            </div>
+                                                                                            <div class="ba-img">
+                                                                                            <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgBefore).')"></canvas>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="ba-col after">
+                                                                                        <div class="ba-item">
+                                                                                            <div class="global-lines ba-lines">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                            </div>
+                                                                                            <div class="ba-img">
+                                                                                                <canvas width="442" height="329" style="background-image: url('.wp_get_attachment_url($imgAfter).')"></canvas>
+                                                                                              
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="ba-range">
+                                                                                    <input type="range" name="ba-range" min="0" max="100" value="50" aria-label="Before and After Handler">
+                                                                                </div>
+                                                                                <div class="ba-handler">
+                                                                                    <span></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>';
                                                              }
                                                         $html .='</div>';
                                                      }

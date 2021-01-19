@@ -6,16 +6,6 @@
     ) );
 
 ?>
-	<div id="aios-gallery-banner">
-        <div class="aios-gallery-banner-wrap">
-            <canvas width="1600" height="650"></canvas>
-        </div>
-        <div class="aios-gallery-title">
-            <div class="container container-wide">
-                <h1>Patient <br> <span>Gallery</span></h1>
-            </div>
-        </div>
-    </div>
 
     <div class="aios-gallery-search-filters">
         <div class="container container-wide">

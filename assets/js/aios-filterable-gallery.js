@@ -1,36 +1,70 @@
-( function($) {
-	$( document ).ready( function() {
+;( function($, w, d, h, b) {
+	var app = {
 
-		const	$document 		= $( document );
-		const	$window 		= $( window );
-		const	$viewport 		= $( 'html, body' );
-		const	$html 			= $( 'html' );
-		const	$body 			= $( 'body' );
+		beforeAfterSlider: function () {
+            var _this = this;
+
+            _this.resizeItem = function ($guide, $target) {
+                $target.css({
+                    width: $guide[0].getBoundingClientRect().width + 'px',
+                });
+            }
+
+            _this.slider = function () {
+                var $sliders = $('.ba-slider');
 
 
-		// CONSTRUCT
+                $sliders.each(function (i, v) {
+                    var $slider = $(v);
+                    
+                    var $before = $slider.find('.ba-col.before');
+                    var $after = $slider.find('.ba-col.after');
 
-		function __construct(){
+                    _this.resizeItem($after.find('.ba-item'), $before.find('.ba-item'));
 
-			aios_ion_slider();
-			aios_render_cases();
-			aios_search_func();
-			aios_sort();
-			taxonomy_quick_search();
-			aios_pagination();
+                    $(w).on('load resize orientationchange', function () {
+                    	  setTimeout(function () {
 
-		}
-		function  aios_ion_slider() {
+                        _this.resizeItem($after.find('.ba-item'), $before.find('.ba-item'));
+                          console.log("The orientation has changed!");
+    }, 200);
+                    });
+                });
+            }
+
+            _this.handler = function () {
+                var $range = $('.ba-range input');
+
+                $range.on('input change', function () {
+                    var $this = $(this);
+                    var value = $this.val();
+                    var $parentWrapper = $this.parents('.ba-slider-wrap');
+
+                    var $before = $parentWrapper.find('.ba-col.before');
+                    $before.css({
+                        width: value + '%',
+                    });
+
+                    var $handler = $parentWrapper.find('.ba-handler');
+                    $handler.css({
+                        left: value + '%',
+                    });
+                });
+            }
+
+			_this.handler();
+			_this.slider();
+        },
+		aios_ion_slider: function() {
 			$(".js-range-slider").ionRangeSlider({
 				 skin: "round",
 				  onChange: function (data) {
 					$('#age').val(''+data['from']+','+data['to']+'');
 				}
 			});
-		}
+		},
 
-		
-		function aios_render_cases() {
+		aios_render_cases: function() {
 				$.post( ajaxurl, {
 					'action' 	: 'aios_medical_post_filter',
 					'data'		: jQuery('.aios-gallery-form input').filter(function () {
@@ -42,7 +76,7 @@
 					$('.aios-gallery-lists .row').animate({
 						opacity: 1,
 					});
-					initComparisons();
+					app.beforeAfterSlider();
 					jQuery('.aios-gallery-list-wrap').slick({
 						dots: true,
 						infinite: false,
@@ -56,24 +90,19 @@
 
 				} );
 
-		}
-		
-		function aios_search_func() {
+		},
+		aios_search_func: function () {
 			let button = $('.aios-gallery-submit-bttn input');
-			
+
 			button.on('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				$('#loader').fadeIn();
 				$('.aios-gallery-lists .row').empty();
-				aios_render_cases();
+				app.aios_render_cases();
 			});
-
-
-
-		}
-		
-		function aios_sort() {
+		},
+		aios_sort: function () {
 
 			sort = $('.aios-sort-by select');
 
@@ -82,11 +111,33 @@
 					$('#loader').fadeIn();
 					$('.aios-gallery-lists .row').empty();
 					$('input[name="sorts"]').val($(this).val());
-					aios_render_cases();
+					app.aios_render_cases();
 			})
-		}
-		
-		function taxonomy_quick_search() {
+		},
+		 aios_pagination: function() {
+
+			  var current = $(".aios-gallery-numbers").text();
+
+				  $(".aios-gallery-pagination-prev").on("click", function() {
+					current = current - 1;
+					$(".aios-gallery-numbers").text(current);
+					$('#loader').fadeIn();
+					$('.aios-gallery-lists .row').empty();
+					$('#paginate-value').val(current);
+					app.aios_render_cases();
+				  });
+				  $(".aios-gallery-pagination-next").on("click", function() {
+						current = parseInt(current) + parseInt(1);
+						$(".aios-gallery-numbers").text(current);
+						$('#loader').fadeIn();
+						$('.aios-gallery-lists .row').empty();
+						$('#paginate-value').val(current);
+						app.aios_render_cases();
+				  });
+
+
+		},
+		taxonomy_quick_search: function () {
 
 			taxonomy 	= $('.aios-toxonomy-quick-search input');
 			procedure	= $('input[name="procedure"]');
@@ -103,36 +154,36 @@
 				}else{
 						procedure.val('');
 				}
-				aios_render_cases();
+				app.aios_render_cases();
 			});
 
-		}
-		
-		function aios_pagination() {
+		},
 
-			  var current = $(".aios-gallery-numbers").text();
-
-				  $(".aios-gallery-pagination-prev").on("click", function() {
-					current = current - 1;
-					$(".aios-gallery-numbers").text(current);
-					$('#loader').fadeIn();
-					$('.aios-gallery-lists .row').empty();
-					$('#paginate-value').val(current);
-					aios_render_cases();
-				  });
-				  $(".aios-gallery-pagination-next").on("click", function() {
-						current = parseInt(current) + parseInt(1);
-						$(".aios-gallery-numbers").text(current);
-						$('#loader').fadeIn();
-						$('.aios-gallery-lists .row').empty();
-						$('#paginate-value').val(current);
-						aios_render_cases();
-				  });
+        others: function () {
+            /** Put your uncategorized functions/scripts here */
+        },
+		init: function() {
+			this.beforeAfterSlider();
+			this.aios_ion_slider();
+			this.aios_render_cases();
+			this.aios_search_func();
+			this.aios_sort();
+			this.aios_pagination();
+			this.taxonomy_quick_search();
 
 
-		}
+		},
+	}
 
-		__construct();
+	$(document).ready( function() {
+        /* Initialize all app functions */
+        app.init();
+	});
 
-	} );
-} )( jQuery );
+    /**
+    *
+    * Please do add your custom script functions similar to the current file structure.
+    * You may also add your uncategorized script functions inside the `app.others` function.
+    *
+    */
+})(jQuery, window, document, 'html', 'body');
