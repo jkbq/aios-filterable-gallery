@@ -199,6 +199,7 @@
 
         .aios-gallery-image {
             position: relative;
+            display: block !important;
         }
 
         .aios-gallery-image > canvas {
@@ -209,81 +210,184 @@
             background-position: center;
             display: block;
         }
-            .aios-gallery-image .img-comp-container {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-            }
+     			  /** Before and After */
+                    .aios-gallery-image {
+                      position: relative;
+                      background: #fff;
+                    }
+                    .aios-gallery-image .ba-lines {
+                      z-index: 2;
+                    }
+                    .aios-gallery-image .ba-lines span {
+                      border-color: rgba(255, 255, 255, 0.2);
+                    }
+                    .aios-gallery-image .ba-wrap,
+                    .aios-gallery-image .ba-slider-wrap,
+                    .aios-gallery-image .ba-slider {
+                      position: relative;
+                    }
+                    .aios-gallery-image .ba-slider-wrap {
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col {
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.before {
+                      position: absolute;
+                      z-index: 3;
+                      top: 0;
+                      left: 0;
+                      width: 50%;
+                      bottom: 0;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.before:after {
 
-            .aios-gallery-image .img-comp-img {
-              position: absolute;
-                width: 100%;
-              height: 100%;
-              overflow:hidden;
-            }
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.before .ba-label {
+                      -webkit-box-pack: end;
+                          -ms-flex-pack: end;
+                              justify-content: flex-end;
+                      padding-right: 11.1%;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.before .ba-label p {
+                      color: #fff;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.after strong {
+                      color: #51dacf;
+                      background-image: url(../../images/global-bg-a.jpg);
+                      background-repeat: no-repeat;
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                      background-size: 100%;
+                    }
+                    .aios-gallery-image .ba-slider .ba-col.after .ba-label {
+                      left: 50%;
+                      padding-left: 10%;
+                    }
+                    .aios-gallery-image .ba-slider .ba-item {
+                      position: relative;
+                    }
+                    .aios-gallery-image .ba-slider .ba-label {
+                      position: absolute;
+                      z-index: 2;
+                      top: 0;
+                      display: -webkit-box;
+                      display: -ms-flexbox;
+                      display: flex;
+                      width: 50%;
+                      padding: 4.4% 0 0 30px;
+                    }
+                    .aios-gallery-image .ba-slider .ba-label strong {
+                      font-family: var(--font-poppins);
+                      font-size: 130px;
+                      font-weight: 700;
+                      line-height: 1;
+                      text-transform: uppercase;
+                      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+                      color: rgba(255, 255, 255, 0.5);
+                      margin-left: -4px;
+                    }
+                    .aios-gallery-image .ba-slider .ba-label p {
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 1.44;
+                      letter-spacing: 0.29px;
+                      color: #838383;
+                    }
+                    .aios-gallery-image .ba-slider .ba-img {
+                      position: relative;
+                    }
+                    .aios-gallery-image .ba-slider .ba-img canvas {
+                        display: block;
+                        width: 100%;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .aios-gallery-image .ba-range {
+                      position: absolute;
+                      z-index: 5;
+                      top: 0;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                    }
+                    .aios-gallery-image .ba-range input {
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      -ms-touch-action: auto;
+                      touch-action: auto;
+                      outline: none;
+                      background: transparent;
+                      position: relative;
+                      left: -1px;
+                      display: block;
+                      width: calc(100% + 2px);
+                      height: 100%;
+                      margin: 0;
+                      padding: 0;
+                      font-size: 0;
+                      opacity: 0;
+                      cursor: pointer;
+                    }
+                    .aios-gallery-image .ba-handler {
+                      position: absolute;
+                      z-index: 6;
+                      top: 0;
+                      left: 50%;
+                      bottom: 0;
+                      width: 2px;
+                      display: -webkit-box;
+                      display: -ms-flexbox;
+                      display: flex;
+                      -webkit-box-orient: vertical;
+                      -webkit-box-direction: normal;
+                          -ms-flex-direction: column;
+                              flex-direction: column;
+                      pointer-events: none;
+                    }
+                    .aios-gallery-image .ba-handler:before, .aios-gallery-image .ba-handler:after {
+                      content: '';
+                      height: calc(50% - 26px);
+                      width: 100%;
+                      background: #fff;
+                    }
+                    .aios-gallery-image .ba-handler span {
+                        display: block;
+                        width: 48px;
+                        height: 48px;
+                        background: rgba(255, 255, 255, 0.9);
+                        opacity: 0.7;
+                        border-radius: 50%;
+                        margin-left: -24px;
+                        position: relative;
+                    }
 
-            .aios-gallery-image .img-comp-img canvas {
-                display: block;
-                vertical-align: middle;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                width: 100%;
-                height: 100%;
-            }
-                .aios-gallery-image .img-comp-img.img-comp-overlay canvas{
-                    width: auto;
-                }
-                .aios-gallery-image .img-comp-img.img-comp-overlay:before,
-                .aios-gallery-image .img-comp-img.img-comp-overlay:after {
-                    content: "";
-                    position: absolute;
-                    right: 0;
-                    width: 2px;
-                    height: calc(50% - 24px);
-                    background: #fff;
-                }
-                    .aios-gallery-image .img-comp-img.img-comp-overlay:before {
-                        top: 0;
-                        bottom: auto;
-                    }
-                    .aios-gallery-image .img-comp-img.img-comp-overlay:after {
-                        top: auto;
-                        bottom: 0;
-                    }
-            .aios-gallery-image .img-comp-slider {
-                position: absolute;
-                z-index:9;
-                cursor: ew-resize;
-                /*set the appearance of the slider:*/
-                width: 48px;
-                height: 48px;
-                background: rgba(255, 255, 255, 0.9);
-                opacity: 0.7;
-                border-radius: 50%;
-            }
+                        .aios-gallery-image .ba-handler span:before,
+                        .aios-gallery-image .ba-handler span:after{
+                            content: '';
+                            position: absolute;
+                            width: 10px;
+                            height: 10px;
+                            top: 50%;
+                            border-top: solid 2px;
+                            border-left: solid 2px;
+                            transform-origin: 0 0;
+                        }
 
-                .aios-gallery-image .img-comp-slider:before,
-                .aios-gallery-image .img-comp-slider:after {
-                    content: '';
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    top: 50%;
-                    border-top: solid 2px;
-                    border-left: solid 2px;
-                    transform-origin: 0 0;
-                }
-                    .aios-gallery-image .img-comp-slider:before {
-                        left: 10px;
-                        transform: rotate(-45deg);
-                    }
-                    .aios-gallery-image .img-comp-slider:after {
-                        right: 0;
-                        transform: rotate(135deg);
-                    }
+                        .aios-gallery-image .ba-handler span:before{
+                            left: 10px;
+                            transform: rotate(-45deg);
+                        }
+                        .aios-gallery-image .ba-handler span:after{
+                            right: 0;
+                            transform: rotate(135deg);
+
+                        }
+
+                    /** End of Before and After */
         .aios-gallery-list .aios-gallery-wrap .aios-gallery-content{
             padding: 40px;
             position: relative;
