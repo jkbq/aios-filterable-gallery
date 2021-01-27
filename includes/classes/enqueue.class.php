@@ -24,8 +24,8 @@ if ( !class_exists( 'aios_filterable_gallery_enqueue' ) ) {
 		 * @access public
 		 */
 		public function add_actions() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_ui' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_uiux' ) );
+            add_action( 'admin_enqueue_scripts', array( $this, 'admin_ui' ) , 50);
+            add_action( 'wp_enqueue_scripts', array( $this, 'frontend_uiux' ), 50);
 		}
 
         /**

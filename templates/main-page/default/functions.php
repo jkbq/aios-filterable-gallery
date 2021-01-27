@@ -5,7 +5,7 @@ use AIOS\Gallery\Classses\Options;
 if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 
 	class aios_listings_main_page_template_default{
-		
+
 		/**
 		 * Current file URL & DIR
 		 *
@@ -21,7 +21,7 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			/** 
+			/**
 			 * Custom - If files is under active theme
 			 * $this->active_template_url = get_stylesheet_directory_uri() . '/listings-templates/main-page/default';
 			 * $this->active_template_dir = get_stylesheet_directory() . '/listings-templates/main-page/default';
@@ -39,7 +39,9 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		 * @return void
 		 */
 		public function add_actions() {
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
+			
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10);
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 11);
 			add_filter( 'template_include', array( $this, 'custom_templates' ), 20 );
 
             add_action( 'wp_ajax_aios_medical_post_filter', array( $this, 'aios_medical_post_filter' ) );
@@ -57,11 +59,25 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		public function enqueue_scripts() {
 
 			if ( is_post_type_archive('cases') ) {
+
+				wp_enqueue_script( 'aios-ionSlider-script', $this->active_template_url . '/assets/js/ion.rangeSlider.min.js', ['jQuery'] );
+				wp_enqueue_script( 'aios-fileterable-gallery-main-page-template-default-script', $this->active_template_url . '/assets/js/scripts.js' );
+
+			}
+
+		}
+		
+		/**
+		 * Enqueue Styles
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function enqueue_styles() {
+
+			if ( is_post_type_archive('cases') ) {
 				wp_enqueue_style( 'aios-ionSlider', $this->active_template_url . '/assets/css/ion.rangeSlider.min.css' );
 				wp_enqueue_style( 'aios-fileterable-gallery-main-page-template-default-style', $this->active_template_url . '/assets/css/style.css' );
-
-				wp_enqueue_script( 'aios-ionSlider-script', $this->active_template_url . '/assets/js/ion.rangeSlider.min.js' );
-				wp_enqueue_script( 'aios-fileterable-gallery-main-page-template-default-script', $this->active_template_url . '/assets/js/scripts.js' );
 
 			}
 
@@ -79,7 +95,7 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 
 
 		    $data = $_POST['data'];
-		    
+
             parse_str($data, $params);
 
 
@@ -103,17 +119,28 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
                         if ($key == 'age'){
                             $ages = explode(",", $param);
 
+                            // edited to accept cases with their Age set as 'Any'
                             $meta_query[] = array(
-                                 'key'     => $key,
-                                 'value'   => $ages[0],
-                                 'compare' => '>=',
-                                 'type'    => 'NUMERIC',
-                            );
-                            $meta_query[] = array(
-                                 'key'     => $key,
-                                 'value'   => $ages[1],
-                                 'compare' => '<=',
-                                 'type'    => 'NUMERIC',
+                                'relation' => 'OR',
+                                array(
+                                    'key'     => $key,
+                                    'value'   => 'Any',
+                                    'compare' => '='
+                                ),
+                                array(
+                                    array(
+                                        'key'     => $key,
+                                        'value'   => $ages[0],
+                                        'compare' => '>=',
+                                        'type'    => 'NUMERIC',
+                                    ),
+                                    array(
+                                        'key'     => $key,
+                                        'value'   => $ages[1],
+                                        'compare' => '<=',
+                                        'type'    => 'NUMERIC',
+                                   )
+                                )
                             );
 
                         }else{
@@ -128,10 +155,20 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 
                              }else{
                                 // if query is not proceddure
+
+                                // edited to accept cases with value set as 'Any'
                                 $meta_query[] = array(
-                                    'key'=> $key,
-                                    'compare'=>'=',
-                                    'value'=> $param
+                                    'relation' => 'OR',
+                                    array(
+                                        'key'     => $key,
+                                        'value'   => 'Any',
+                                        'compare' => '='
+                                    ),
+                                    array(
+                                        'key'=> $key,
+                                        'compare'=>'=',
+                                        'value'=> $param
+                                    )
                                 );
                             }
                         }
@@ -156,6 +193,8 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
                 'posts_per_page' => -1,
                 'paged'        => $paged,
                 'post_status' => 'publish',
+                'meta_query'    => $meta_query,
+                'tax_query'     => $tax_query,
 
             );
 
@@ -180,6 +219,7 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 
             // query
             $the_query = new WP_Query( $args );
+
 
             $html = '';
 
@@ -317,6 +357,19 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
             }
             }else{
                 $html .= '<div class="gallery-no-posts">no Case found</div>';
+            }
+
+
+
+            if ($num_pages != 0 ){
+                $html .= ' <div class="clear"></div><div class="aios-gallery-pagination">
+                <div class="aios-gallery-pagination-prev aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-p"></i></div>
+                <div class="pagination-info">
+                      <div class="aios-gallery-numbers">'.$paged.'</div>
+                      <div class="aios-gallery-seprator">of</div>
+                      <div class="aios-gallery-final-count" data-num="'.$num_pages.'">'.$num_pages.'</div>
+                </div>
+                <div class="aios-gallery-pagination-next aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-n"></i></div></div>';
             }
 
             echo $html;

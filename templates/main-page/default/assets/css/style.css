@@ -118,6 +118,9 @@
                  width: 9.92%;
              }
 
+             .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-submit-bttn .disabled{
+                pointer-events: none;
+             }
 
                 .aios-gallery-search-filters .aios-gallery-form .aios-gallery-form-wrap .aios-gallery-dropdown-procedure {}
 
@@ -323,6 +326,7 @@
                             top: 100%;
                             width: 100%;
                             left: 0;
+                            background: #e9eef1;
                         }
 
                             .aios-gallery-dropdown-filter ul li {
