@@ -224,7 +224,7 @@ function getEmbedUrl($url) {
                                                 $html .= '<div class="aios-gallery-video-wrap">';
                                                 $html .= '<div class="aios-video-gallery-title">
                                                                 <h3>PROCEDURE  VIDEO</h3>
-                                                                <p>View the videos of the procedure buy clicking on the thumbnails on the right</p>
+                                                                <p>View the videos of the procedure by clicking on the thumbnails on the right</p>
                                                             </div>';
                                                 $html .='<div class="aios-gallery-video-preview">';
                                                 $html .='<canvas width="408" height="308"></canvas>';

@@ -186,7 +186,6 @@
             background-color: rgb(255, 255, 255);
             overflow: hidden;
             transition: all 0.3s linear;
-            min-height: 673px;
 
         }
             .aios-gallery-list .aios-gallery-wrap:hover{
@@ -607,6 +606,13 @@
     }
         .aios-gallery-pagination .aios-gallery-pagination-arrows i{
             color: #898989;
+        }
+
+        .aios-gallery-pagination .aios-gallery-pagination-arrows.disable-final{
+            pointer-events: none;
+        }
+        .aios-gallery-pagination .aios-gallery-pagination-arrows.disable-final i {
+            color: #cac4c4;
         }
 /** Gallery Content **/
 .gallery-no-posts {

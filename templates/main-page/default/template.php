@@ -188,35 +188,8 @@
                         <!-- ajahx will append  html -->
                     </div><!-- end of row -->
 
-                    <?php
-                        $posts_per_page = (get_option('posts_per_page')) ? get_option('posts_per_page') : 2;
-
-                        $CountArgs  = array(
-                            'post_type' => $post_type,
-                            'posts_per_page' => -1,
-                            'paged'        => $paged,
-                            'post_status' => 'publish',
-
-                        );
-
-                        $all_posts = get_posts($CountArgs);
-
-                        $post_count = count($all_posts);
-                        $num_pages = ceil($post_count / $posts_per_page);
-
-                    ?>
-                    <div class="aios-gallery-pagination <?= $num_pages > '1' ? '' : 'hide' ?>">
-                        <div class="aios-gallery-pagination-prev aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-p"></i></div>
-                        <div class="pagination-info">
-                              <div class="aios-gallery-numbers">1</div>
-                              <div class="aios-gallery-seprator">of</div>
-                              <div class="aios-gallery-final-count"><?= $num_pages ?></div>
-                        </div>
-                        <div class="aios-gallery-pagination-next aios-gallery-pagination-arrows"><i class="ai-font-arrow-b-n"></i></div>
-
-                    </div>
-
-
+            
+                
             </div>
 
 
