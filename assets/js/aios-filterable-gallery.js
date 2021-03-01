@@ -26,7 +26,6 @@
                     	  setTimeout(function () {
 
                         _this.resizeItem($after.find('.ba-item'), $before.find('.ba-item'));
-                          console.log("The orientation has changed!");
     }, 200);
                     });
                 });
@@ -115,7 +114,6 @@
 				$('#loader').fadeIn();
 				$('.aios-gallery-lists .row').empty();
 				$('#paginate-value').val('1');
-				console.log($('#paginate-value').val())
 				app.aios_render_cases();
 			});
 		},
