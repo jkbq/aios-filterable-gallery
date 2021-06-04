@@ -64,7 +64,7 @@
                                 <li>Asian</li></li>
                                 <li>Other</li>
                               </ul>
-                        </div><!-- end of gallery dropdown -->
+                        </div>end of gallery dropdown
 
 
                         <div class="aios-gallery-submit-bttn desktop-show">
