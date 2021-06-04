@@ -57,8 +57,9 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		 * @return void
 		 */
 		public function enqueue_scripts() {
-
-			if ( is_post_type_archive('cases') ) {
+            $gallery_settings = Options::Settings();
+			if( !empty( $gallery_settings ) ) extract( $gallery_settings );
+			if ( $main_page == get_the_ID() && get_the_ID() != 0 ) {
 
 				wp_enqueue_script( 'aios-ionSlider-script', $this->active_template_url . '/assets/js/ion.rangeSlider.min.js', ['jQuery'] );
 				wp_enqueue_script( 'aios-fileterable-gallery-main-page-template-default-script', $this->active_template_url . '/assets/js/scripts.js' );
@@ -74,8 +75,9 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		 * @return void
 		 */
 		public function enqueue_styles() {
-
-			if ( is_post_type_archive('cases') ) {
+            $gallery_settings = Options::Settings();
+			if( !empty( $gallery_settings ) ) extract( $gallery_settings );
+			if ( $main_page == get_the_ID() && get_the_ID() != 0 ) {
 				wp_enqueue_style( 'aios-ionSlider', $this->active_template_url . '/assets/css/ion.rangeSlider.min.css' );
 				wp_enqueue_style( 'aios-fileterable-gallery-main-page-template-default-style', $this->active_template_url . '/assets/css/style.css' );
 
@@ -387,10 +389,11 @@ if ( !class_exists( 'aios_listings_main_page_template_default' ) ) {
 		 * @return void
 		 */
 		public function custom_templates( $template ) {
-            $listings_settings = Options::Settings();
-			if( !empty( $listings_settings ) ) extract( $listings_settings );
+            $gallery_settings = Options::Settings();
+			if( !empty( $gallery_settings ) ) extract( $gallery_settings );
 
-			if ( is_post_type_archive( 'cases') ) {
+
+			if (  $main_page == get_the_ID() && get_the_ID() != 0 ) {
 				$template = $this->active_template_dir . '/template.php';
 			}
 
