@@ -1,8 +1,8 @@
 <?php
 /*
  * Plugin Name: AIOS Filterable Gallery
- * Description: List of Listings
- * Version: 1.0.0
+ * Description: Lists of clients cases
+ * Version: 1.0.1
  * Author: Agent Image
  * Author URI: https://www.agentimage.com/
  * License: Proprietary
