@@ -53,7 +53,7 @@
 			
 			/** Create an icon */
 			var mapIcon = L.icon({
-				iconUrl: 'https://resources.agentimage.com/libraries/images/map-marker/52.png',
+				iconUrl: 'https://cdn.vs12.com/libraries/images/map-marker/52.png',
 				// shadowUrl: 'leaf-shadow.png',
 
 				iconSize:     [52, 52], // size of the icon
