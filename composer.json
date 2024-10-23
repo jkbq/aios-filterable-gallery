@@ -1,0 +1,13 @@
+{
+  "name": "aios-packages/aios-filterable-gallery",
+  "description": "Lists of clients cases",
+  "type": "wordpress-plugin",
+  "license": "Proprietary",
+  "authors": [
+    {
+      "name": "Agent Image"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}
