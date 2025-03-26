@@ -140,7 +140,7 @@
                                                     if ( $field['label'] != 'Add Photos' && $field['label'] != 'Description' && $field['label'] != 'Video') {
                                                         if ( !empty($field['choices'])){
                                                         $html .='  <div class="aios-gallery-dropdown-filter">';
-                                                            $html .='  <input type="text" name="'.$field['name'].'"  placeholder="'.$field['label'].'" value="'.$params[$field['name']].'">';
+                                                            $html .='  <input type="text" name="'.esc_attr($field['name']).'"  placeholder="'.esc_attr($field['label']).'" value="'.esc_attr($params[$field['name']]).'">';
                                                             $html .='<ul>';
                                                             foreach ($field['choices'] as $choice){
                                                                 $html .= '<li>'.htmlentities($choice).'</li>';
