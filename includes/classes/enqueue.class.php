@@ -58,6 +58,14 @@ if ( !class_exists( 'aios_filterable_gallery_enqueue' ) ) {
 		 * @access public
 		 */
 		public function frontend_uiux() {
+			$cdnUrl = in_array(
+				get_option('aios_custom_login_screen', 'default'),
+				['default', 'reduxlabs']
+			) ? "//cdn.vs12.com" : "//resources.agentimage.com";
+			
+			// DOMPurify
+			if (! wp_script_is('dompurify', 'enqueued')) wp_enqueue_script('dompurify', "$cdnUrl/libraries/js/purify.min.js");
+
 			wp_enqueue_style( 'aios-filterable-gallery-style', AIOS_FILTERABLE_URL_ASSETS_CSS .'aios-filterable-gallery.css' );
 			wp_enqueue_script( 'aios-ion-slider', AIOS_FILTERABLE_URL_ASSETS_JS .'ion.rangeSlider.min.js' );
 			wp_enqueue_script( 'aios-filterable-gallery', AIOS_FILTERABLE_URL_ASSETS_JS .'aios-filterable-gallery.js' );
