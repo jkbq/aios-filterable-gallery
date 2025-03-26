@@ -235,11 +235,12 @@ function getEmbedUrl($url) {
                                                          foreach ( $videos as $video) {
                                                                 $video_url = getEmbedUrl( $video['url'] ); ;
                                                                 $url_pieces = explode('/', $video_url);
-$video_type = '';
+                                                                $video_type = '';
+
                                                                 if ( $url_pieces[2] == 'player.vimeo.com' ) { // If Vimeo
                                                                     $video_type = 'vimeo';
                                                                     $id = $url_pieces[4];
-                                                                    $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $id . '.php'));
+                                                                    $hash = unserialize(file_get_contents(esc_html('http://vimeo.com/api/v2/video/' . $id . '.php')));
                                                                     $thumbnail = $hash[0]['thumbnail_large'];
 
                                                                 } elseif ( $url_pieces[2] == 'www.youtube.com' ) { // If Youtube

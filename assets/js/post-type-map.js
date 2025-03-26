@@ -90,7 +90,7 @@
 			// ).addTo(mapid);
 			L.mapboxGL({
 				attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-				accessToken: 'not-needed',
+				accessToken: '',
 				style: 'https://api.maptiler.com/maps/streets/style.json?key=3i8dcrACEAmtPrc6lzeW'
 			}).addTo(mapid);
 
