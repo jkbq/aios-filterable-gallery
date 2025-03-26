@@ -11,9 +11,9 @@
         <div class="container container-wide">
             <div class="aios-gallery-form">
                 <form action="<?= site_url()?>/cases" method="get">
-                    <input type="hidden" name="page" value="<?= $params['page'] ?>" id="paginate-value">
-                    <input type="hidden" name="sorts" value="<?= $params['sorts'] ?>" id="sort">
-                    <input type="hidden" name="case_number" value="<?= $params['case'] ?>" id="case-number">
+                    <input type="hidden" name="page" value="<?= esc_attr( $params['page'] ) ?>" id="paginate-value">
+                    <input type="hidden" name="sorts" value="<?= esc_attr( $params['sorts'] ) ?>" id="sort">
+                    <input type="hidden" name="case_number" value="<?= esc_attr( $params['case'] ) ?>" id="case-number">
                     <input type="hidden" name="procedure" value="" id="procedure-main">
                     <div class="aios-gallery-form-wrap">
 
@@ -45,17 +45,17 @@
                                 $ages  = explode(",", $params['age']);
                             ?>
                              <label for="age">Age</label>
-                            <input type="hidden" id="age" name="age" value="<?= $params['age'] ?>">
+                            <input type="hidden" id="age" name="age" value="<?= esc_attr( $params['age'] ) ?>">
                             <input type="text" class="js-range-slider" name="" value=""
                                 data-type="double"
                                 data-min="18"
                                 data-max="99"
-                                data-from="<?= $ages[0] ?>"
-                                data-to="<?= $ages[1] ?>"
+                                data-from="<?= esc_attr( $ages[0] ) ?>"
+                                data-to="<?= esc_attr( $ages[1] ) ?>"
                             />
                         </div><!-- end of range filter -->
                         <div class="aios-gallery-dropdown-filter">
-                            <input type="text" name="ethnicity"  placeholder="Ethnicity" value="<?= $params['ethnicity'] ?>">
+                            <input type="text" name="ethnicity"  placeholder="Ethnicity" value="<?= esc_attr( $params['ethnicity'] ) ?>">
                               <ul>
                                 <li>Any</li>
                                 <li>Caucasian</li>
@@ -140,7 +140,7 @@
                                                     if ( $field['label'] != 'Add Photos' && $field['label'] != 'Description' && $field['label'] != 'Video') {
                                                         if ( !empty($field['choices'])){
                                                         $html .='  <div class="aios-gallery-dropdown-filter">';
-                                                            $html .='  <input type="text" name="'.$field['name'].'"  placeholder="'.$field['label'].'" value="'.$params[$field['name']].'">';
+                                                            $html .='  <input type="text" name="'.esc_attr($field['name']).'"  placeholder="'.esc_attr($field['label']).'" value="'.esc_attr($params[$field['name']]).'">';
                                                             $html .='<ul>';
                                                             foreach ($field['choices'] as $choice){
                                                                 $html .= '<li>'.htmlentities($choice).'</li>';

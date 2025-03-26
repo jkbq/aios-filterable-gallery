@@ -2,7 +2,7 @@
 /*
  * Plugin Name: AIOS Filterable Gallery
  * Description: Lists of clients cases
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Agent Image
  * Author URI: https://www.agentimage.com/
  * License: Proprietary

@@ -41,10 +41,18 @@ if ( !class_exists( 'aios_filterable_gallery_init' ) ) {
 			$admin_page_contains = 'aios-all-in-one_page_filterable_gallery-settings';
 			
 			if ( strpos($admin_page_id, $admin_page_contains) !== false ) {
+				$cdnUrl = in_array(
+					get_option('aios_custom_login_screen', 'default'),
+					['default', 'reduxlabs']
+				) ? "//cdn.vs12.com" : "//resources.agentimage.com";
+
 				/** Enqueue Media Color Picker **/
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker-alpha', AIOS_INITIAL_SETUP_URL . 'includes/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ) );
+		
+				// DOMPurify
+				wp_enqueue_script('dompurify', "$cdnUrl/libraries/js/purify.min.js");
 				
 				wp_enqueue_style( 'aios-filterable-gallery-style', AIOS_FILTERABLE_URL_ASSETS_CSS . 'admin-style.css' );
 				wp_enqueue_script( 'aios-filterable-gallery-scripts', AIOS_FILTERABLE_URL_ASSETS_JS . 'admin-scripts.js' );

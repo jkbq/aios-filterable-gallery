@@ -70,7 +70,7 @@
 							return !!this.value;
 						}).serialize(),
 				}, function(response) {
-					$('.aios-gallery-lists .row').append(response);
+					$('.aios-gallery-lists .row').append(DOMPurify.sanitize(response));
 					$('#loader').fadeOut();
 					$('.aios-gallery-lists .row').animate({
 						opacity: 1,
